@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "206102758341",
+    "firebase_url": "https://demologin-9f064.firebaseio.com",
+    "project_id": "demologin-9f064",
+    "storage_bucket": "demologin-9f064.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206102758341:android:6be1a6bec4cd5f4e",
+        "android_client_info": {
+          "package_name": "com.example.firebaseemailpasswordexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206102758341-1o3kjjjm7un78519m1nn9bj91utmgmmf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnC79A8aajPUWs-C6PK9etdjY2SsUzUM8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
