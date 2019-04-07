@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Email login</title>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js"></script>
+   
+
+
+    <script src="initfirebase.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
+
+    <style type="text/css">
+        body{
+            background-color : black;
+            color : white ;
+            font-family: "Montserrat", sans-serif;
+        
+        }
+        h2{
+            color : white ;
+            font-family: "Montserrat", sans-serif;
+        }
+        /**:focus{
+            outline: none;
+        }*/
+        input{
+            font-size: 16px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .btn{
+            background-color: #4CAF50;
+            font-size: 16px;
+            color: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width : 100%;
+        }
+        .container{
+            /*margin-top : 10%;*/
+            opacity: 0.9;
+            background-color: grey;
+            width: 30%;
+            padding: 16px;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        #error{
+            color : red;
+        }
+       
+    </style>
+
+
+</head>
+<body>
+    <br><br><br><p> <center><h2>Admin Login</h2></p>
+   
+    <!-- <div id="firebaseui-auth-container"></div> -->
+
+  
+    <div class="container">
+    
+        <input type="email" id="txtEmail" placeholder="Email" required> <br><br>
+
+        <input type="password" id="txtPassword" name="pwd" placeholder="Password" required> <br><br>
+
+        <button id="btnLogin" value="Login" class="btn btn-action">Login</button>
+
+        <!-- <button id="btnLogout" class="btn btn-action hide">Logout</button> -->
+        
+
+        
+ 
+    </div>
+    <br>
+    <div id="error"></div>
+
+
+    <script type="text/javascript">     //Login
+            //Get elements
+            const txtEmail = document.getElementById('txtEmail');
+            const txtPassword = document.getElementById('txtPassword');
+            const btnLogin = document.getElementById('btnLogin');
+            // const btnLogout = document.getElementById('btnLogout');
+            //Add login event
+            btnLogin.addEventListener('click', e=>{
+                //get email and pass
+                const email = txtEmail.value;
+                const pass = txtPassword.value;
+                const auth = firebase.auth();
+                //Sign in
+                const promise = auth.signInWithEmailAndPassword(email, pass);
+                promise.catch(e => console.log(e.message));
+            });
+            //Add a realtime listener
+            firebase.auth().onAuthStateChanged(firebaseUser => {
+                if(firebaseUser){
+                    console.log(firebaseUser);
+                    window.location.href = "landingpage.html";
+                    
+                }else{
+                    console.log('Not logged in');
+                   
+                    btnLogin.addEventListener("click", function(e){
+                        e.preventDefault();
+
+                        var err = document.getElementById("error");
+                        err.innerHTML = "Invalid Credentials";
+                        // alert("Invalid Credentials\n");
+                    });
+
+                    txtPassword.value="";
+                    txtEmail.value="";
+                }
+            });
+       
+    </script>
+
+</body>
+</html>
