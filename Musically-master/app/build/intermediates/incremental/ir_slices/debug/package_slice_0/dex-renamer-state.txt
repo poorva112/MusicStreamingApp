@@ -1,0 +1,4 @@
+#Thu Apr 04 20:52:01 IST 2019
+base.0=/Users/college/Documents/Musically-master/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
