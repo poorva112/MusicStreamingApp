@@ -19,8 +19,8 @@ public class LogSign extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(LogSign.this, RegistrationActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(LogSign.this, RegistrationActivity.class);
+                startActivity(intent);
             }
         });
         loginBtn.setOnClickListener(new View.OnClickListener() {
