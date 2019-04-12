@@ -27,7 +27,6 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
 {
 
 	// All player buttons
-	private Button LogInSignUp;
 	private ImageButton btnShare;
 	private ImageButton btnPlay;
 	private ImageButton btnForward;
@@ -75,7 +74,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
 		songCurrentDurationLabel = (TextView) findViewById(R.id.songCurrentDurationLabel);
 		songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
 		btnShare = (ImageButton) findViewById(R.id.btnShare);
-		LogInSignUp = (Button) findViewById(R.id.LoginSignup);
+
 
 		mp = new MediaPlayer();
 		songManager = new SongsManager();
@@ -333,16 +332,6 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
 			}
 		});
 
-		LogInSignUp.setOnClickListener(new View.OnClickListener()
-		{
-
-			@Override
-			public void onClick(View arg0)
-			{
-				Intent intent = new Intent(AndroidBuildingMusicPlayerActivity.this, LogSign.class);
-				startActivity(intent);
-			}
-		});
 
 
 		btnShare.setOnClickListener(new View.OnClickListener()

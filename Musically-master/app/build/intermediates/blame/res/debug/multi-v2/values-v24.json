@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/college/Documents/Musically-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/d8fdb7be5bf2b1ffbc5294c0345d90bf/res/values-v24/values-v24.xml",
+                    "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/56ed29a2ef0995bac97cf4b068635c12/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/college/Documents/Musically-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-te-rIN/values-te-rIN.xml",
+            "outputFile": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-te-rIN/values-te-rIN.xml",
             "map": [
                 {
-                    "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/238a5c7a153a1b050f648c9d9826f1dc/res/values-te-rIN/values-te-rIN.xml",
+                    "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/values-te-rIN/values-te-rIN.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

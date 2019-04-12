@@ -3,6 +3,8 @@
 
     <string name="hello">Hello World, AndroidBuildingMusicPlayerActivity!</string>
     <string name="app_name">AndroidBuildingMusicPlayer</string>
-    <string name="buttonrough">Button</string>
+    <string name="Email">Email</string>
+    <string name="PasswordLog">Password</string>
+
 
 </resources>
