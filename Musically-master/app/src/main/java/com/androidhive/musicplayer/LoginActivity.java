@@ -65,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
 
                             Intent intent = new Intent(LoginActivity.this, AndroidBuildingMusicPlayerActivity.class);
+                            emailTV.getText().clear();
+                            passwordTV.getText().clear();
                             startActivity(intent);
                         }
                         else {

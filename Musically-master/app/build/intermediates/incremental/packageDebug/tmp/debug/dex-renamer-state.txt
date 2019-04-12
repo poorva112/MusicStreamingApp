@@ -1,4 +1,4 @@
-#Sat Apr 13 02:48:45 IST 2019
+#Sat Apr 13 02:53:25 IST 2019
 base.0=/Users/college/Documents/Git/Musically-master/app/build/intermediates/dex/debug/mergeDexDebug/out
 path.0=classes.dex
 renamed.0=classes.dex
