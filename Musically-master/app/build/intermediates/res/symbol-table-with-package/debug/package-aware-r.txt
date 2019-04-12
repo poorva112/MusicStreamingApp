@@ -721,6 +721,7 @@ id packed
 id parent
 id parentPanel
 id password
+id password1
 id percent
 id player_footer_bg
 id player_header_bg
@@ -728,6 +729,7 @@ id progressBar
 id progress_circular
 id progress_horizontal
 id radio
+id register
 id right
 id right_icon
 id right_side
@@ -816,6 +818,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout activity_log_sign
 layout activity_login
+layout activity_registration
 layout bg_player_footer
 layout bg_player_header
 layout main

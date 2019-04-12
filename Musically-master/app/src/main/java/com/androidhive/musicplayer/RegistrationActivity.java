@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText emailTV, passwordTV;
@@ -68,8 +69,10 @@ public class RegistrationActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                         else {
-                            Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
+//                            FirebaseAuthException e = (FirebaseAuthException )task.getException();
+                            Toast.makeText(getApplicationContext(), "Registration failed! Please try again later..."+task.getException(), Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
+//                            Log.e("LoginActivity", "Failed Registration", e);
                         }
                     }
                 });
