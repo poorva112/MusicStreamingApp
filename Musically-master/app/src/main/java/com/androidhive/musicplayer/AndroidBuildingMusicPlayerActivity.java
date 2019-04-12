@@ -22,11 +22,13 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AndroidBuildingMusicPlayerActivity extends Activity
 {
 
 	// All player buttons
+	private Button logout;
 	private ImageButton btnShare;
 	private ImageButton btnPlay;
 	private ImageButton btnForward;
@@ -74,7 +76,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
 		songCurrentDurationLabel = (TextView) findViewById(R.id.songCurrentDurationLabel);
 		songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
 		btnShare = (ImageButton) findViewById(R.id.btnShare);
-
+		logout  = (Button) findViewById(R.id.btnLogout);
 
 		mp = new MediaPlayer();
 		songManager = new SongsManager();
@@ -332,6 +334,14 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
 			}
 		});
 
+		logout.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				FirebaseAuth.getInstance().signOut();
+				Intent intent = new Intent(AndroidBuildingMusicPlayerActivity.this, LogSign.class);
+				startActivity(intent);
+			}
+		});
 
 
 		btnShare.setOnClickListener(new View.OnClickListener()

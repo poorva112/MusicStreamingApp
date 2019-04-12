@@ -660,6 +660,7 @@ id bottom
 id btnBackward
 id btnForward
 id btnLogin
+id btnLogout
 id btnNext
 id btnPlay
 id btnPlaylist

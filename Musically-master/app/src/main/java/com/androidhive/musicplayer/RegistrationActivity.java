@@ -66,13 +66,13 @@ public class RegistrationActivity extends AppCompatActivity {
                             progressBar.setVisibility(View.GONE);
 
                             Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                            emailTV.getText().clear();
+                            passwordTV.getText().clear();
                             startActivity(intent);
                         }
                         else {
-//                            FirebaseAuthException e = (FirebaseAuthException )task.getException();
                             Toast.makeText(getApplicationContext(), "Registration failed! Please try again later..."+task.getException(), Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
-//                            Log.e("LoginActivity", "Failed Registration", e);
                         }
                     }
                 });
