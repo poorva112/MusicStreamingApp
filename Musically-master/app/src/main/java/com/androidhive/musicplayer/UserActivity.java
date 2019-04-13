@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.ProgressBar;
 
@@ -17,6 +19,9 @@ public class UserActivity extends AppCompatActivity {
     private TextView WelUsr;
     private Button logout;
 
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
+    private TextView accType;
 
     private FirebaseAuth mAuth;
     @Override
@@ -52,14 +57,6 @@ public class UserActivity extends AppCompatActivity {
         logout = (Button) findViewById(R.id.btnLogout);
     }
 
-//    private void loadUserInformation(){
-//        FirebaseUser user = mAuth.getCurrentUser();
-//
-//        if(user != null){
-//            if(user.getDisplayName() != null)
-//                WelUsr.setText("Welcome "+ user.getDisplayName());
-//        }
-//        String displayUsr = user.getDisplayName();
-//    }
+
 
 }

@@ -669,6 +669,7 @@ id btnRegister
 id btnRepeat
 id btnShare
 id btnUser
+id button2
 id buttonPanel
 id cancel_action
 id chains
@@ -779,6 +780,9 @@ id textSpacerNoButtons
 id textView2
 id textView4
 id textView5
+id textView6
+id textView7
+id textView8
 id time
 id timerDisplay
 id title
