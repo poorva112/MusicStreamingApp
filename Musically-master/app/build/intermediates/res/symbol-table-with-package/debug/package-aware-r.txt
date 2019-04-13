@@ -627,6 +627,7 @@ drawable seekbar_progress
 drawable seekbar_progress_bg
 drawable share
 drawable track_info_bg
+id accType
 id action0
 id action_bar
 id action_bar_activity_content
@@ -669,10 +670,10 @@ id btnRegister
 id btnRepeat
 id btnShare
 id btnUser
-id button2
 id buttonPanel
 id cancel_action
 id chains
+id changeType
 id checkbox
 id chronometer
 id collapseActionView
@@ -734,6 +735,7 @@ id progress_horizontal
 id radio
 id radioFree
 id radioPremium
+id radioType
 id register
 id right
 id right_icon
@@ -782,7 +784,6 @@ id textView4
 id textView5
 id textView6
 id textView7
-id textView8
 id time
 id timerDisplay
 id title

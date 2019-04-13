@@ -5,11 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,6 +21,7 @@ public class UserActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private TextView accType;
+    private Button changeType;
 
     private FirebaseAuth mAuth;
     @Override
@@ -49,14 +49,43 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        changeType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                accType.setText("-> "+radioButton.getText());
+
+                //update to firebase database
+
+                //access to firebase database
+
+                if(radioButton.getText() == "free"){
+                    //delete
+                }
+                else{
+                    //add premium users to database
+                }
+
+            }
+        });
+
     }
 
 
     private void initializeUI() {
         WelUsr = (TextView) findViewById(R.id.welUsr);
         logout = (Button) findViewById(R.id.btnLogout);
+
+        radioGroup = (RadioGroup) findViewById(R.id.radioType);
+        accType = (TextView) findViewById(R.id.accType);
+        changeType = (Button) findViewById(R.id.changeType);
     }
 
+    public void checkButton(View v){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = (RadioButton) findViewById(radioId);
+        Toast.makeText(this, "Click on \"Change Account Type\" to change subscription", Toast.LENGTH_SHORT).show();
+    }
 
 
 }
