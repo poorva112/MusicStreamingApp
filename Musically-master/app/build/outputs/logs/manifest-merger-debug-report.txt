@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-38:12
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-39:12
 MERGED from [com.android.support:appcompat-v7:23.4.0] /Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/AndroidManifest.xml:17:1-27:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/college/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/27b39df126291f313eac5c168f00f478/AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.firebase:firebase-core:16.0.1] /Users/college/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.1.aar/814d2513f6de40801c23e7f60b4e9974/AndroidManifest.xml:2:1-9:12
@@ -37,9 +37,9 @@ MERGED from [com.android.support:support-core-ui:26.1.0] /Users/college/.gradle/
 MERGED from [com.android.support:support-compat:26.1.0] /Users/college/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/3d065d97149245aae099e40758d0f64c/AndroidManifest.xml:17:1-31:12
 MERGED from [com.google.android.gms:play-services-measurement-base:16.0.0] /Users/college/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.0.aar/400748390749b33b4add1f79200890a3/AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/college/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/eadd34fa7e459ab8332800a8251ca751/AndroidManifest.xml:17:1-30:12
-INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:2:1-39:12
 	package
 		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:3:5-42
 		INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml
@@ -79,7 +79,7 @@ MERGED from [com.google.firebase:firebase-storage-common:16.0.1] /Users/college/
 	android:name
 		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:9:22-64
 application
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:11:5-36:19
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:11:5-37:19
 MERGED from [com.android.support:appcompat-v7:23.4.0] /Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:appcompat-v7:23.4.0] /Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/college/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/27b39df126291f313eac5c168f00f478/AndroidManifest.xml:9:5-20
@@ -138,46 +138,52 @@ MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/college/.gradle/caches
 		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:13:9-41
 	android:icon
 		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:12:9-45
-activity#com.androidhive.musicplayer.RegistrationActivity
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:14:9-17:20
+activity#com.androidhive.musicplayer.UserActivity
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:14:9-16:68
 	android:theme
 		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:16:13-56
 	android:name
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:15:13-49
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:15:13-41
+activity#com.androidhive.musicplayer.RegistrationActivity
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:17:9-19:68
+	android:theme
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:19:13-56
+	android:name
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:18:13-49
 activity#com.androidhive.musicplayer.LoginActivity
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:18:9-21:20
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:20:9-22:68
 	android:theme
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:20:13-56
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:22:13-56
 	android:name
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:19:13-42
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:21:13-42
 activity#com.androidhive.musicplayer.LogSign
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:22:9-30:20
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:23:9-31:20
 	android:theme
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:24:13-56
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:25:13-56
 	android:name
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:23:13-36
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:24:13-36
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:25:13-29:29
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:26:13-30:29
 action#android.intent.action.MAIN
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:26:17-69
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:27:17-69
 	android:name
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:26:25-66
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:27:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:28:17-77
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:29:17-77
 	android:name
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:28:27-74
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:29:27-74
 activity#com.androidhive.musicplayer.AndroidBuildingMusicPlayerActivity
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:31:9-34:57
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:32:9-35:48
 	android:label
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:34:13-45
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:35:13-45
 	android:configChanges
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:34:13-63
+	android:name
 		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:33:13-63
-	android:name
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:32:13-63
 activity#com.androidhive.musicplayer.PlayListActivity
-ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:35:9-54
+ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:36:9-54
 	android:name
-		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:35:19-51
+		ADDED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml:36:19-51
 uses-sdk
 INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/college/Documents/Git/Musically-master/app/src/main/AndroidManifest.xml

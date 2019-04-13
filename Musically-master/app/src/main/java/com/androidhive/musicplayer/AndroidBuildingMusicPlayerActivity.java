@@ -28,7 +28,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
 {
 
 	// All player buttons
-	private Button logout;
+	private Button User;
 	private ImageButton btnShare;
 	private ImageButton btnPlay;
 	private ImageButton btnForward;
@@ -76,7 +76,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
 		songCurrentDurationLabel = (TextView) findViewById(R.id.songCurrentDurationLabel);
 		songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
 		btnShare = (ImageButton) findViewById(R.id.btnShare);
-		logout  = (Button) findViewById(R.id.btnLogout);
+		User  = (Button) findViewById(R.id.btnUser);
 
 		mp = new MediaPlayer();
 		songManager = new SongsManager();
@@ -334,11 +334,11 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
 			}
 		});
 
-		logout.setOnClickListener(new View.OnClickListener() {
+		User.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				FirebaseAuth.getInstance().signOut();
-				Intent intent = new Intent(AndroidBuildingMusicPlayerActivity.this, LogSign.class);
+//				FirebaseAuth.getInstance().signOut();
+				Intent intent = new Intent(AndroidBuildingMusicPlayerActivity.this, UserActivity.class);
 				startActivity(intent);
 			}
 		});

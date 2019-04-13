@@ -28,14 +28,14 @@
             android:textStyle="bold" />"
 
         <Button
-            android:id="@+id/btnLogout"
+            android:id="@+id/btnUser"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-medium"
-            android:text="Log Out"
+            android:text="User"
             android:textSize="16sp" />
 
         <!-- Playlist button -->

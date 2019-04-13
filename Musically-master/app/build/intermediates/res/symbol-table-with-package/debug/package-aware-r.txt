@@ -668,6 +668,7 @@ id btnPrevious
 id btnRegister
 id btnRepeat
 id btnShare
+id btnUser
 id buttonPanel
 id cancel_action
 id chains
@@ -730,6 +731,8 @@ id progressBar
 id progress_circular
 id progress_horizontal
 id radio
+id radioFree
+id radioPremium
 id register
 id right
 id right_icon
@@ -774,6 +777,8 @@ id text
 id text2
 id textSpacerNoButtons
 id textView2
+id textView4
+id textView5
 id time
 id timerDisplay
 id title
@@ -782,6 +787,7 @@ id top
 id topPanel
 id up
 id useLogo
+id welUsr
 id wide
 id withText
 id wrap
@@ -820,6 +826,7 @@ layout abc_select_dialog_material
 layout activity_log_sign
 layout activity_login
 layout activity_registration
+layout activity_user
 layout bg_player_footer
 layout bg_player_header
 layout main

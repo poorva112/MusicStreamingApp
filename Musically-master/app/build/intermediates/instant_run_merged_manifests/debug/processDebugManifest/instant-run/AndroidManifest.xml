@@ -28,13 +28,14 @@
         android:label="@string/app_name"
         android:testOnly="true" >
         <activity
+            android:name="com.androidhive.musicplayer.UserActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity
             android:name="com.androidhive.musicplayer.RegistrationActivity"
-            android:theme="@style/Base.Theme.AppCompat" >
-        </activity>
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name="com.androidhive.musicplayer.LoginActivity"
-            android:theme="@style/Base.Theme.AppCompat" >
-        </activity>
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name="com.androidhive.musicplayer.LogSign"
             android:theme="@style/Base.Theme.AppCompat" >
