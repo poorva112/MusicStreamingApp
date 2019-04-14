@@ -586,7 +586,13 @@ drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable gradient_bg
 drawable gradient_bg_hover
+drawable ic_fast_forward_black_24dp
+drawable ic_fast_rewind_black_24dp
 drawable ic_launcher
+drawable ic_pause_black_24dp
+drawable ic_play_arrow_black_24dp
+drawable ic_skip_next_black_24dp
+drawable ic_skip_previous_black_24dp
 drawable img_btn_backward
 drawable img_btn_backward_pressed
 drawable img_btn_forward

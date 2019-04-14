@@ -43,7 +43,7 @@ public class UserActivity extends AppCompatActivity {
 
         /* Dislay username */
         if(user != null){
-                WelUsr.setText(user.getEmail());
+            WelUsr.setText(user.getEmail());
         }
 
 
@@ -73,7 +73,7 @@ public class UserActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-				FirebaseAuth.getInstance().signOut();
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(UserActivity.this, LogSign.class);
                 startActivity(intent);
             }
@@ -100,7 +100,4 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
-//    public void addPremiumUser(){
-//
-//    }
 }
