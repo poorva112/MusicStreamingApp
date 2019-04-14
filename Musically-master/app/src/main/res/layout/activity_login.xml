@@ -65,8 +65,8 @@
 
         <Button
             android:id="@+id/login"
-            android:layout_width="395dp"
-            android:layout_height="wrap_content"
+            android:layout_width="397dp"
+            android:layout_height="62dp"
             android:text="Login"
             android:textSize="20sp"
             tools:layout_editor_absoluteX="15dp"

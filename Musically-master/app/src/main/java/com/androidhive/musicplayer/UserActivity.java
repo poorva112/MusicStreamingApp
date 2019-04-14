@@ -14,6 +14,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class UserActivity extends AppCompatActivity {
 
@@ -24,6 +28,9 @@ public class UserActivity extends AppCompatActivity {
     private RadioButton radioButton;
     private TextView accType;
     private Button changeType;
+
+    private RadioButton free;
+    private RadioButton premium;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -40,12 +47,35 @@ public class UserActivity extends AppCompatActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
 
+        String userEmail = user.getEmail();
+        userEmail = userEmail.split("@")[0];
 
         /* Dislay username */
         if(user != null){
-            WelUsr.setText(user.getEmail());
+            WelUsr.setText(userEmail);
         }
 
+        DatabaseReference userNameRef = mDatabase.child("Users").child(userEmail);
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()) {
+                    //free
+                    free.setChecked(true);
+                    accType.setText("-> FREE");
+                }
+                else{
+                    premium.setChecked(true);
+                    accType.setText("-> PREMIUM");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Log.d(TAG, databaseError.getMessage()); //Don't ignore errors!
+            }
+        };
+        userNameRef.addListenerForSingleValueEvent(eventListener);
 
 
         changeType.setOnClickListener(new View.OnClickListener() {
@@ -90,12 +120,15 @@ public class UserActivity extends AppCompatActivity {
         accType = (TextView) findViewById(R.id.accType);
         changeType = (Button) findViewById(R.id.changeType);
 
+        free = (RadioButton) findViewById(R.id.radioFree);
+        premium = (RadioButton) findViewById(R.id.radioPremium);
 
     }
 
     public void checkButton(View v){
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) findViewById(radioId);
+//        WelUsr.setText(radioButton.getText());
         Toast.makeText(this, "Click on \"Change Account Type\" to change subscription", Toast.LENGTH_SHORT).show();
     }
 

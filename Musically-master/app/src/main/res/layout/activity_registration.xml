@@ -59,8 +59,8 @@
 
         <Button
             android:id="@+id/register"
-            android:layout_width="393dp"
-            android:layout_height="wrap_content"
+            android:layout_width="392dp"
+            android:layout_height="64dp"
             android:text="Register"
             android:textSize="20sp"
             tools:layout_editor_absoluteX="15dp"
