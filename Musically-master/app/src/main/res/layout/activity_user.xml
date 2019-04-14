@@ -1,170 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UserActivity">
 
-    <TextView
-        android:id="@+id/welUsr"
-        android:layout_width="323dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:text="Username"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/padding">
 
-    <RadioGroup
-        android:id="@+id/radioType"
-        android:layout_width="285dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="284dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Welcome, "
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="136dp" />
 
-        <RadioButton
-            android:id="@+id/radioFree"
-            android:layout_width="119dp"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:onClick="checkButton"
-            android:text="Free"
-            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/welUsr"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:text="Username"
+            android:textSize="22sp"
+            tools:layout_editor_absoluteX="44dp"
+            tools:layout_editor_absoluteY="176dp" />
 
-        <RadioButton
-            android:id="@+id/radioPremium"
-            android:layout_width="174dp"
-            android:layout_height="wrap_content"
-            android:onClick="checkButton"
-            android:text="Premium"
-            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="Select Account Type"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="48dp"
+            tools:layout_editor_absoluteY="244dp" />
 
-    </RadioGroup>
+        <RadioGroup
+            android:id="@+id/radioType"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="284dp">
+
+            <RadioButton
+                android:id="@+id/radioFree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:gravity="center_vertical"
+                android:onClick="checkButton"
+                android:text="Free"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radioPremium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="checkButton"
+                android:text="Premium"
+                android:textSize="18sp" />
+
+        </RadioGroup>
 
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="395dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="532dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="142dp"
-        android:text="Log Out"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="269dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginRight="135dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Account Details"
-        android:textAllCaps="false"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/changeType"
+            android:layout_width="395dp"
+            android:layout_height="57dp"
+            android:text="Change Account Type"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="354dp" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="176dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="136dp"
-        android:text="Welcome, "
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="Account Details"
+            android:textAllCaps="false"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="28sp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="62dp" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="317dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="244dp"
-        android:text="Select Account Type"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="315dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="436dp"
-        android:text="Your Account Type"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:text="Your Account Type"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="48dp"
+            tools:layout_editor_absoluteY="436dp" />
 
-    <TextView
-        android:id="@+id/accType"
-        android:layout_width="163dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="470dp"
-        android:layout_marginEnd="192dp"
-        android:layout_marginRight="192dp"
-        android:layout_marginBottom="223dp"
-        android:text=" -> Free"
-        android:textAllCaps="true"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/accType"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:text=" -> Free"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="470dp" />
 
-    <Button
-        android:id="@+id/changeType"
-        android:layout_width="395dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="354dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="320dp"
-        android:text="Change Account Type"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="395dp"
+            android:layout_height="57dp"
+            android:text="Log Out"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="532dp" />
+
+
+    </LinearLayout>
+</RelativeLayout>

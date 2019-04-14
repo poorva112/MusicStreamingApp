@@ -2430,6 +2430,7 @@ public final class R {
     public static final int notification_subtext_size=0x7f050059;
     public static final int notification_top_pad=0x7f05005a;
     public static final int notification_top_pad_large_text=0x7f05005b;
+    public static final int padding=0x7f05005c;
   }
   public static final class drawable {
     public static final int abc_ab_share_pack_mtrl_alpha=0x7f060000;

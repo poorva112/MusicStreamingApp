@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "539507516546",
+    "firebase_url": "https://rhythm1-b1f76.firebaseio.com",
+    "project_id": "rhythm1-b1f76",
+    "storage_bucket": "rhythm1-b1f76.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539507516546:android:0ef2a81d53752b35",
+        "android_client_info": {
+          "package_name": "com.androidhive.musicplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539507516546-1c2fte0hprlidul0fm9jtt2uc3kf9k75.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.androidhive.musicplayer",
+            "certificate_hash": "7884d0beb1277b5f9926cd8a4b482ab728d4ea62"
+          }
+        },
+        {
+          "client_id": "539507516546-2vfggf5dl7cfgbtm6j43t0bduespf6nk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1MoCgKg93Ic3lfCPTehu59s0DH_kLpkc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "539507516546-2vfggf5dl7cfgbtm6j43t0bduespf6nk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

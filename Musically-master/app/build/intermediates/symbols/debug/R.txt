@@ -473,6 +473,7 @@ int dimen notification_small_icon_size_as_large 0x7f050058
 int dimen notification_subtext_size 0x7f050059
 int dimen notification_top_pad 0x7f05005a
 int dimen notification_top_pad_large_text 0x7f05005b
+int dimen padding 0x7f05005c
 int drawable abc_ab_share_pack_mtrl_alpha 0x7f060000
 int drawable abc_action_bar_item_background_material 0x7f060001
 int drawable abc_btn_borderless_material 0x7f060002
