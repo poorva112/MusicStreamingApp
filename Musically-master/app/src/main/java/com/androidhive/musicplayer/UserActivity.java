@@ -40,11 +40,37 @@ public class UserActivity extends AppCompatActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
 
+
+        /* Dislay username */
         if(user != null){
-//            if(user.getDisplayName() != null)
                 WelUsr.setText(user.getEmail());
         }
 
+
+
+        changeType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                accType.setText("-> "+radioButton.getText());
+
+                FirebaseUser user = mAuth.getCurrentUser();
+                String userEmail = user.getEmail();
+                userEmail = userEmail.split("@")[0];
+
+                //update to firebase database
+
+                //access to firebase database
+//                mDatabase.child("Users").child(userEmail).setValue("empty");
+//
+                if(radioButton.getText() == "free")
+                    Toast.makeText(UserActivity.this, "Delete Users", Toast.LENGTH_SHORT).show();
+                else
+//                    //add premium users to database
+                    mDatabase.child("Users").child(userEmail).child("Playlist").setValue("empty");
+
+
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,25 +78,6 @@ public class UserActivity extends AppCompatActivity {
 				FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(UserActivity.this, LogSign.class);
                 startActivity(intent);
-            }
-        });
-
-        changeType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                accType.setText("-> "+radioButton.getText());
-
-                //update to firebase database
-
-                //access to firebase database
-
-                if(radioButton.getText() == "free"){
-                    //delete
-                }
-                else{
-                    //add premium users to database
-                }
-
             }
         });
 
@@ -84,6 +91,8 @@ public class UserActivity extends AppCompatActivity {
         radioGroup = (RadioGroup) findViewById(R.id.radioType);
         accType = (TextView) findViewById(R.id.accType);
         changeType = (Button) findViewById(R.id.changeType);
+
+
     }
 
     public void checkButton(View v){
@@ -93,4 +102,7 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
+//    public void addPremiumUser(){
+//
+//    }
 }
