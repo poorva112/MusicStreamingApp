@@ -1,10 +1,10 @@
 # Music Streaming App
 
 
-##### WebApp Admin Portal
-  - A tool to upload songs and albums along with metadata.
+#### WebApp Admin Portal
+- A tool to upload songs and albums along with metadata.
   
-##### Android Music Streaming Application: 
+#### Android Music Streaming Application: 
 - Basic app to perform operations such as play, pause, reset, fast-forward, fast-rewind, replay. 
 - Navigate to any song in the list of songs, next song, previous song.
 - Change track progress at any point
