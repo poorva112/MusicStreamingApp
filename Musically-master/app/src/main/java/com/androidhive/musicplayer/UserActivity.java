@@ -51,24 +51,22 @@ public class UserActivity extends AppCompatActivity {
         changeType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                accType.setText("-> "+radioButton.getText());
+                accType.setText("-> " + radioButton.getText());
 
                 FirebaseUser user = mAuth.getCurrentUser();
                 String userEmail = user.getEmail();
                 userEmail = userEmail.split("@")[0];
 
-                //update to firebase database
 
-                //access to firebase database
-//                mDatabase.child("Users").child(userEmail).setValue("empty");
-//
-                if(radioButton.getText() == "free")
-                    Toast.makeText(UserActivity.this, "Delete Users", Toast.LENGTH_SHORT).show();
-                else
-//                    //add premium users to database
+                if ( radioButton.getText().equals("Free") ){
+                    mDatabase.child("Users").child(userEmail).setValue(null);
+
+                }
+                else {
                     mDatabase.child("Users").child(userEmail).child("Playlist").setValue("empty");
+                    mDatabase.child("Users").child(userEmail).child("Downloads").setValue("empty");
 
-
+                }
             }
         });
 
