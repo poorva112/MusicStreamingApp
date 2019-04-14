@@ -2,9 +2,9 @@
 
 
 ### Authors
-* **Poorva Tiwari** 
-* **Aakansha Pant**
-* **Meghana Vyakaranam**
+* Poorva Tiwari 
+* Aakanksha Pant
+* Meghana Vyakaranam
 
 ### Features Implemented
 ##### WebApp Admin Portal
