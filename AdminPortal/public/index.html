@@ -113,11 +113,13 @@
                     console.log('Not logged in');
                    
                     btnLogin.addEventListener("click", function(e){
-                        e.preventDefault();
-
-                        var err = document.getElementById("error");
-                        err.innerHTML = "Invalid Credentials";
-                        // alert("Invalid Credentials\n");
+                        e.preventDefault();                       
+                                         
+                        function InvalidCred() {
+						  	var err = document.getElementById("error");	
+                        	err.innerHTML = "Invalid Credentials";
+						}	                      
+                        setTimeout(InvalidCred, 2500)
                     });
 
                     txtPassword.value="";
