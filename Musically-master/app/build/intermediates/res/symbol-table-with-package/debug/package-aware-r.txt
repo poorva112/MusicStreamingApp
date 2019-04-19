@@ -857,6 +857,7 @@ layout activity_login
 layout activity_registration
 layout activity_user
 layout activity_view__database
+layout alertplaylist
 layout bg_player_footer
 layout bg_player_header
 layout main

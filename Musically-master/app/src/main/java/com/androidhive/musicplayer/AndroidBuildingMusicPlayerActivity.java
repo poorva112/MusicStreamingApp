@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import android.app.AlertDialog;
 import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -40,7 +42,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 {
 
     // All player buttons
-    //pls add to git
+
 
     private ImageButton User;
     private ImageButton btnShare;
@@ -79,6 +81,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private DatabaseReference userNameRef;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -98,7 +101,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         /* Checking if authenticated user is a premium member
          * If yes, enable AddToPlaylist button. (make it visible, else hide it)
          * */
-        DatabaseReference userNameRef = mDatabase.child("Users").child(username);
+        userNameRef = mDatabase.child("Users").child(username);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -123,6 +126,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         };
         userNameRef.addListenerForSingleValueEvent(eventListener);
 
+
         btnPlay = (ImageButton) findViewById(R.id.btnPlay);
         btnForward = (ImageButton) findViewById(R.id.btnForward);
         btnBackward = (ImageButton) findViewById(R.id.btnBackward);
@@ -137,15 +141,10 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
         btnShare = (ImageButton) findViewById(R.id.btnShare);
         btnmyplaylist = (ImageButton) findViewById(R.id.btnmyplaylist);
-        //add to playlist
+
         btnspeedup=(ImageButton) findViewById(R.id.speedup);
 
         User  = (ImageButton)findViewById(R.id.btnuser);
-
-
-
-
-
 
 
         mp = new MediaPlayer();
@@ -446,6 +445,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AndroidBuildingMusicPlayerActivity.this, UserActivity.class);
+
                 startActivity(intent);
             }
         });
@@ -509,7 +509,28 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             public void onClick(View v) {
                 //add song detail(name + album name) to database in Users.username reference
 
-                Toast.makeText(getApplicationContext(),"Add to playlist",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Adding to playlist",Toast.LENGTH_SHORT).show();
+
+                //create user prompt alert dialogue to type Playlist Name
+                //..... userNameRef.child(playlist)....
+
+                /* Alert Dialogue with user prompt code
+                LayoutInflater.from(AndroidBuildingMusicPlayerActivity.this).inflate(R.layout., null);
+                AlertDialog.Builder  alertBuilder = new AlertDialog.Builder(AndroidBuildingMusicPlayerActivity.this);
+                alertBuilder.setView(layoutResId);
+
+                //use alerplaylist.xml for user prompt
+                //  Youtube link : https://www.youtube.com/watch?v=BXTanDpOTVU
+                */
+
+                //fetch album and songname
+
+                //drop-down menu for playlist???
+
+                String selectedSong = "shallow|a star is born";
+                userNameRef.child("Playlist").child(selectedSong).child("Song").setValue("shallow");
+                userNameRef.child("Playlist").child(selectedSong).child("Album").setValue("a star is born");
+
             }
         });
 
