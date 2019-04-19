@@ -11,11 +11,13 @@ function getInputVal(id){
 	return document.getElementById(id).value;
 }
 
-function saveMessage(song,album, artist, year, genre, url){
-	var newMessageRef = messagesRef.push();						//key missing
+function saveMessage(song, album, artist, year, genre, url){
+	var songname = song.split('.')[0];
+	
 	if(song.split('.')[1]=="wav" || song.split('.')[1]=="mp3" || song.split('.')[1]=="wma" ){
+		var newMessageRef = messagesRef.child(songname+'|'+album);						
 		newMessageRef.set({
-			Song : song.split('.')[0],
+			Song : songname,
 			Album : album,
 			Artist : artist,
 			Year : year,
