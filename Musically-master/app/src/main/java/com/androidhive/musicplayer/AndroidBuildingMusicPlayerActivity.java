@@ -27,7 +27,13 @@ import android.widget.Toast;
 import android.widget.Button;
 import android.widget.PopupMenu;
 
-
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class AndroidBuildingMusicPlayerActivity extends Activity implements PopupMenu.OnMenuItemClickListener
@@ -71,12 +77,51 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     private boolean isShare = false;
     //private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.player);
+
+        btnAddToPlaylist=(ImageButton) findViewById(R.id.addtoplaylist);
+
+        /* Authenticated User and Database */
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        final String userEmail = user.getEmail();
+        final String username = userEmail.split("@")[0];
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        /* Checking if authenticated user is a premium member
+         * If yes, enable AddToPlaylist button. (make it visible, else hide it)
+         * */
+        DatabaseReference userNameRef = mDatabase.child("Users").child(username);
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()) {
+                    //user data doesnt exist  -> free user
+                    //hide AddToPlayList button
+                    Toast.makeText(getApplicationContext(), "Free user", Toast.LENGTH_SHORT).show();
+                    btnAddToPlaylist.setVisibility(View.GONE);
+                }
+                else{
+                    //user data exists -> premium user
+                    //display AddToPlayList button
+                    Toast.makeText(getApplicationContext(), "Premium user", Toast.LENGTH_SHORT).show();
+                    btnAddToPlaylist.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Log.d(TAG, databaseError.getMessage()); //Don't ignore errors!
+            }
+        };
+        userNameRef.addListenerForSingleValueEvent(eventListener);
 
         btnPlay = (ImageButton) findViewById(R.id.btnPlay);
         btnForward = (ImageButton) findViewById(R.id.btnForward);
@@ -93,10 +138,15 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         btnShare = (ImageButton) findViewById(R.id.btnShare);
         btnmyplaylist = (ImageButton) findViewById(R.id.btnmyplaylist);
         //add to playlist
-        btnAddToPlaylist=(ImageButton) findViewById(R.id.addtoplaylist);
         btnspeedup=(ImageButton) findViewById(R.id.speedup);
 
         User  = (ImageButton)findViewById(R.id.btnuser);
+
+
+
+
+
+
 
         mp = new MediaPlayer();
 
@@ -380,14 +430,14 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                 {
                     isRepeat = false;
                     Toast.makeText(getApplicationContext(), "Repeat is OFF", Toast.LENGTH_SHORT).show();
-                    btnRepeat.setImageResource(R.drawable.btn_repeat);
+                    btnRepeat.setImageResource(R.drawable.ic_loop_black_24dp);
                 }
                 else
                 {
                     // make repeat to true
                     isRepeat = true;
                     Toast.makeText(getApplicationContext(), "Repeat is ON", Toast.LENGTH_SHORT).show();
-                    btnRepeat.setImageResource(R.drawable.btn_repeat_focused);
+                    btnRepeat.setImageResource(R.drawable.ic_loop_blue_24dp);
                 }
             }
         });
@@ -457,6 +507,8 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         btnAddToPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //add song detail(name + album name) to database in Users.username reference
+
                 Toast.makeText(getApplicationContext(),"Add to playlist",Toast.LENGTH_SHORT).show();
             }
         });

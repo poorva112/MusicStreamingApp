@@ -593,6 +593,7 @@ drawable ic_fast_rewind_black_24dp
 drawable ic_launcher
 drawable ic_library_music_black_24dp
 drawable ic_loop_black_24dp
+drawable ic_loop_blue_24dp
 drawable ic_pause_black_24dp
 drawable ic_play_arrow_black_24dp
 drawable ic_playlist_add_black_24dp
