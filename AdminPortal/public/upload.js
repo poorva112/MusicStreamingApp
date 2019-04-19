@@ -1,9 +1,11 @@
+
+
 var messagesRef = firebase.database().ref('Music');
 var uploadbtn = document.getElementById('uploadbtn');
 var mfiles = document.getElementById('mfiles');
 var uploader = document.getElementById('uploader');
 var thumbnail = document.getElementById('tn');
-// var curUrl = "ok";
+
 
 function getInputVal(id){
 	return document.getElementById(id).value;
@@ -24,7 +26,7 @@ function saveMessage(song,album, artist, year, genre, url){
 }
 
 //Handle waiting to upload each file using promise
-function uploadMultipleFiles(File, album, artist, year, genre) {
+function uploadMultipleFiles(File, album, artist, year, genre, i, flength) {
     return new Promise(function (resolve, reject) {
 
     	//Send audio file to 'Songs' reference
@@ -54,10 +56,17 @@ function uploadMultipleFiles(File, album, artist, year, genre) {
 		    	task.snapshot.ref.getDownloadURL().then(function(downloadURL){
 		    		console.log('File available at', downloadURL);
 		    				    		
-               		var curUrl = downloadURL; 
+               		var curUrl = downloadURL; 		//and then update database with metadata + download url               		
                		saveMessage(File.name.toLowerCase(), album, artist, year, genre, curUrl);
 		    	});
 		        uploader.value = 0;
+
+		        if(i == flength){		//if it's the last file
+		        	alert("Upload is complete");
+					document.getElementById('uploadform').reset();
+		        }
+
+		   		// alert(File.name);
 		        
 	    	}
 	    );
@@ -79,23 +88,16 @@ uploadbtn.addEventListener("click", function(e){
 	genre = genre.toLowerCase();
 
 	function uploadfiles(mfiles){
-		for (var i = 0; i < mfiles.files.length; i++) {
+		var flength = mfiles.files.length;  
+		for (var i = 0; i < flength; i++) {
     		var File = mfiles.files[i];
 			
-			uploadMultipleFiles(File, album, artist, year, genre);	
-			// alert(curUrl);	
-			// saveMessage(File.name.toLowerCase(), album, artist, year, genre, curUrl);
-
-
-			if(i == mfiles.files.length-1){
-				alert("Upload is complete");
-				document.getElementById('uploadform').reset();
-			}
+			uploadMultipleFiles(File, album, artist, year, genre, i, flength-1);		//upload them one by one
+			
     	} 	
 	}
 
-	uploadfiles(mfiles);
-
+	uploadfiles(mfiles); 	//mfiles  = all the files taken together in a list
 	
 });
 
