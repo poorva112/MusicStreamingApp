@@ -45,26 +45,34 @@ public class UserActivity extends AppCompatActivity {
 
         initializeUI();
 
-        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();     //get current User
 
         String userEmail = user.getEmail();
-        userEmail = userEmail.split("@")[0];
+        final String username = userEmail.split("@")[0];
+        //Username is assumed to be part of email ID
+        //final keyword makes it accessible to to other functions within this scope. For ex: changeType.setOnClickListener
 
         /* Dislay username */
         if(user != null){
-            WelUsr.setText(userEmail);
+            WelUsr.setText(username);
         }
 
-        DatabaseReference userNameRef = mDatabase.child("Users").child(userEmail);
+
+        /*Checking if User Data exists in Users Reference in Firebase Storage or not
+            and accordingly decide if a current user is a premium or free user.
+        */
+        DatabaseReference userNameRef = mDatabase.child("Users").child(username);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.exists()) {
-                    //free
+                    //user data doesnt exist  -> free user
+                    //Display the same on Users page
                     free.setChecked(true);
                     accType.setText("-> FREE");
                 }
                 else{
+                    //user data exists -> premium user
                     premium.setChecked(true);
                     accType.setText("-> PREMIUM");
                 }
@@ -81,21 +89,17 @@ public class UserActivity extends AppCompatActivity {
         changeType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Changing account type based on the radio button selected.
+
                 accType.setText("-> " + radioButton.getText());
 
-                FirebaseUser user = mAuth.getCurrentUser();
-                String userEmail = user.getEmail();
-                userEmail = userEmail.split("@")[0];
-
-
                 if ( radioButton.getText().equals("Free") ){
-                    mDatabase.child("Users").child(userEmail).setValue(null);
+                    mDatabase.child("Users").child(username).setValue(null);
 
                 }
                 else {
-                    mDatabase.child("Users").child(userEmail).child("Playlist").setValue("empty");
-                    mDatabase.child("Users").child(userEmail).child("Downloads").setValue("empty");
-
+                    mDatabase.child("Users").child(username).child("Playlist").setValue("empty");
+                    mDatabase.child("Users").child(username).child("Downloads").setValue("empty");
                 }
             }
         });
@@ -128,7 +132,6 @@ public class UserActivity extends AppCompatActivity {
     public void checkButton(View v){
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) findViewById(radioId);
-//        WelUsr.setText(radioButton.getText());
         Toast.makeText(this, "Click on \"Change Account Type\" to change subscription", Toast.LENGTH_SHORT).show();
     }
 

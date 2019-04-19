@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
@@ -23,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailTV, passwordTV;
     private Button loginBtn;
     private ProgressBar progressBar;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -43,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //checking if user is logged in or not
+        //Avoids unnecessarily logging in again and again
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
             Toast.makeText(getApplicationContext(), "Already logged in as '" +user.getEmail()+ "'", Toast.LENGTH_SHORT).show();
@@ -90,9 +89,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initializeUI() {
+        //identifying widgets from their IDs
+
         emailTV = (EditText) findViewById(R.id.email);
         passwordTV = (EditText) findViewById(R.id.password);
-
         loginBtn = (Button) findViewById(R.id.login);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }

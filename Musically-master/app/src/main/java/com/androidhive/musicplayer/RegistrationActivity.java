@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -22,8 +23,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText emailTV, passwordTV;
     private Button regBtn;
     private ProgressBar progressBar;
-
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 registerNewUser();
             }
         });
+
+
+        //Currently logged in users are logged out automatically on REGISTRATION PAGE
+        FirebaseUser user  = mAuth.getCurrentUser();
+        if(user != null){
+            FirebaseAuth.getInstance().signOut();
+        }
     }
 
     private void registerNewUser() {
@@ -79,10 +87,9 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void initializeUI() {
+        //identifying widgets from their IDs
         emailTV = (EditText) findViewById(R.id.email);
         passwordTV = (EditText) findViewById(R.id.password1);
-
-
         regBtn = (Button) findViewById(R.id.register);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
