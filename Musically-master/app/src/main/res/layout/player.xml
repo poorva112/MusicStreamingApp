@@ -4,7 +4,7 @@
     android:layout_height="match_parent" 
     android:background="#4a4a4a"> 
     
-    <!-- Player Header -->
+    <!-- Player Header add to git-->
     <LinearLayout
         android:id="@+id/player_header_bg"
         android:layout_width="fill_parent"
@@ -17,26 +17,28 @@
         <!-- Song Title -->
         <TextView
             android:id="@+id/songTitle"
-            android:layout_width="240dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:layout_weight="1"
             android:paddingLeft="10dp"
             android:textColor="#04b3d2"
             android:textSize="16dp"
-            android:textStyle="bold" />"
+            android:textStyle="bold" />
+        <ImageButton
+            android:id="@+id/btnmyplaylist"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/ic_queue_music_black_24dp" />
 
-        <Button
-            android:id="@+id/btnUser"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="User"
-            android:textSize="16sp" />
+        <ImageButton
+            android:id="@+id/btnuser"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/ic_account_circle_black_24dp" />
 
         <!-- Playlist button -->
         <ImageButton
@@ -78,7 +80,7 @@
 
         <!-- Player Buttons -->
         <LinearLayout
-            android:layout_width="306dp"
+            android:layout_width="320dp"
             android:layout_height="66dp"
             android:background="@layout/rounded_corner"
             android:gravity="center_vertical"
@@ -88,7 +90,7 @@
             <!-- Previous Button -->
             <ImageButton
                 android:id="@+id/btnPrevious"
-                android:layout_width="43dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:src="@drawable/ic_skip_previous_black_24dp" />
@@ -171,18 +173,18 @@
     <!-- Repeat / Shuffle buttons -->
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_above="@id/timerDisplay"
-        android:layout_marginBottom="-16dp"
+        android:layout_marginBottom="-15dp"
         android:gravity="center">
         <!-- Repeat Button -->
         <ImageButton
             android:id="@+id/btnRepeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="10dp"
             android:background="@null"
-            android:src="@drawable/btn_repeat" />
+            android:src="@drawable/ic_loop_black_24dp" />
 
         <!-- Shuffle Button -->
 
@@ -197,7 +199,25 @@
             android:id="@+id/btnShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:background="@null"
-            android:src="@drawable/btn_share" />
+            android:src="@drawable/ic_share_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/addtoplaylist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:src="@drawable/ic_playlist_add_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/speedup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:src="@drawable/ic_schedule_black_24dp" />
+
     </LinearLayout>
 </RelativeLayout>

@@ -1,3 +1,4 @@
+
 package com.androidhive.musicplayer;
 
 import android.app.Activity;
@@ -7,10 +8,12 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -34,13 +37,17 @@ import com.google.firebase.auth.AuthResult;
 public class SongsManager
 {
 	// SDCard Path
+	//pls add to git
 	final String MEDIA_PATH = android.os.Environment.getExternalStorageDirectory().getPath() + "/";
-	private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
+	public ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
+	private ArrayList<String> songs=new ArrayList<String>();
 	public Context context;
 	private FirebaseAuth mAuth;
+	public boolean load_UI=false;
 	private DatabaseReference mDatabase;
 	boolean local_loaded=false;
 
+	private String nam;
 	// Constructor
 	public SongsManager(Context context)
 	{
@@ -58,9 +65,21 @@ public class SongsManager
 	 * Function to read all mp3 files from sdcard
 	 * and store the details in ArrayList
 	 * */
-	public ArrayList<HashMap<String, String>> getPlayList()
+	public void getPlayList()
 	{
+		/* tmp = new MyClass();
+		Thread thread = new Thread(tmp);
+		thread.start();
+		try {
+			thread.join();
+		}
+		catch(InterruptedException e)
+		{
+			e.printStackTrace();
+		}*/
+
 		get_cloud_music();
+
 		Log.d("local storage","starting addition");
 		if (MEDIA_PATH != null)
 		{
@@ -85,7 +104,8 @@ public class SongsManager
 		}
 		Log.d("local storage","completed addition");
 // return songs list array
-		return songsList;
+		//return songsList;
+
 	}
 
 
@@ -146,74 +166,157 @@ public class SongsManager
 
 		Log.d("login", "sign:success");
 		StorageReference storageReference;
+		StorageReference storageRef;
 		//list= new ArrayList<>();
 		Log.d("firebase","loading data from firebase");
-		storageReference=FirebaseStorage.getInstance().getReference().child("Songs/shallow.wav");//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
+		storageReference=FirebaseStorage.getInstance().getReference();
+		songs.add("shallow.wav");
+		songs.add("million reasons.wma");
+		songs.add("always remember us this way.mp3");
+		Thread t1;
+		fetchURL hehe;
+		for(int i=0;i<3;i++) {
+			//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
 
-		storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-			@Override
-			public void onSuccess(Uri uri) {
-				// Download url of file
-				try {
-					final String url = uri.toString();
-					Log.d("music from firebase", url);
-					add_cloud_music("Shallow.wav",url);
+			storageRef = storageReference.child("Songs/" + songs.get(i));
+			hehe = new fetchURL(storageRef, i);
+			t1 = new Thread(hehe);
+			t1.start();
+
+			try {
+				t1.join();
+				Log.d("completed url fetch",i+"");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			/*
+			storageRef = storageReference.child("Songs/" + songs.get(1));//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
+			storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+				@Override
+				public void onSuccess(Uri uri) {
+					// Download url of file
+					try {
+						final String url = uri.toString();
+						Log.d("music from firebase", url);
+						add_cloud_music(songs.get(1), url);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
-				catch (Exception e) {
+			})
+					.addOnFailureListener(new OnFailureListener() {
+						@Override
+						public void onFailure(@NonNull Exception e) {
+							Log.i("TAG", e.getMessage());
+						}
+					});
+			storageRef = storageReference.child("Songs/" + songs.get(2));//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
+			storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+				@Override
+				public void onSuccess(Uri uri) {
+					// Download url of file
+					try {
+						final String url = uri.toString();
+						Log.d("music from firebase", url);
+						add_cloud_music(songs.get(2), url);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			})
+					.addOnFailureListener(new OnFailureListener() {
+						@Override
+						public void onFailure(@NonNull Exception e) {
+							Log.i("TAG", e.getMessage());
+						}
+					});
+			*/
+		}
+	}
+
+	private class MyClass implements Runnable
+	{
+
+		@Override
+		public void run()
+		{
+			mDatabase = FirebaseDatabase.getInstance().getReference();
+			FirebaseUser user = mAuth.getCurrentUser();
+			if(user != null){
+				Log.d("email",user.getEmail());
+			}
+
+			Log.d("login", "sign:success");
+			StorageReference storageReference;
+			StorageReference storageRef;
+			Log.d("firebase","loading data from firebase");
+			storageReference=FirebaseStorage.getInstance().getReference();
+			songs.add("shallow.wav");
+			songs.add("million reasons.wma");
+			songs.add("always remember us this way.mp3");
+			Thread t1;
+			fetchURL hehe;
+			for(int i=0;i<3;i++) {
+				//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
+				storageRef = storageReference.child("Songs/" + songs.get(i));
+				hehe = new fetchURL(storageRef, i);
+				t1 = new Thread(hehe);
+				t1.start();
+				try {
+					t1.join();
+					Log.d("completed url fetch",i+"");
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-		})
-				.addOnFailureListener(new OnFailureListener() {
-					@Override
-					public void onFailure(@NonNull Exception e) {
-						Log.i("TAG", e.getMessage());
-					}
-				});
+			Log.d("thread","done");
+		}
 
-
-		/*mAuth.signInAnonymously().addOnCompleteListener((Activity) this.context, new OnCompleteListener<AuthResult>() {
-			@Override
-			public void onComplete(@NonNull Task<AuthResult> task) {
-
-				if (task.isSuccessful()) {
-					// Sign in success, update UI with the signed-in user's information
-					Log.d("login", "signInAnonymously:success");
-					FirebaseUser user = mAuth.getCurrentUser();
-					StorageReference storageReference;
-					//list= new ArrayList<>();
-					Log.d("firebase","loading data from firebase");
-					storageReference=FirebaseStorage.getInstance().getReference().child("Songs/shallow.wav");//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
-
-					storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-						@Override
-						public void onSuccess(Uri uri) {
-							// Download url of file
-							try {
-								final String url = uri.toString();
-								Log.d("music from firebase", url);
-								add_cloud_music("Shallow.wav",url);
-							}
-							catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
-					})
-							.addOnFailureListener(new OnFailureListener() {
-								@Override
-								public void onFailure(@NonNull Exception e) {
-									Log.i("TAG", e.getMessage());
-								}
-							});
-
-				} else {
-					// If sign in fails, display a message to the user.
-					Log.d("login", "signInAnonymously:failure");
-
-
-				}
-			}
-		});*/
 	}
-}
 
+	private class fetchURL implements Runnable{
+
+
+		private Integer i;
+		private StorageReference storageRef;
+		public fetchURL(StorageReference a,Integer i)
+		{
+			// store parameter for later user
+			this.storageRef=a;
+			this.i=i;
+
+		}
+		@Override
+		public void run()
+		{
+
+			storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+				@Override
+				public void onSuccess(Uri uri) {
+					// Download url of file
+					try {
+						final String url = uri.toString();
+						Log.d("music from firebase", url);
+						add_cloud_music(songs.get(i), url);
+
+						if(i==3)
+						{
+							load_UI=true;
+						}
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			})
+					.addOnFailureListener(new OnFailureListener() {
+						@Override
+						public void onFailure(@NonNull Exception e) {
+							Log.i("TAG", e.getMessage());
+						}
+					});
+		}
+	}
+
+}

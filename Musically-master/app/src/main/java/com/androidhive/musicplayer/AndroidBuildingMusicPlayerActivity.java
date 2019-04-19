@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,6 +17,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -22,15 +25,18 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
+import android.widget.PopupMenu;
 
 
 
 
-public class AndroidBuildingMusicPlayerActivity extends Activity
+public class AndroidBuildingMusicPlayerActivity extends Activity implements PopupMenu.OnMenuItemClickListener
 {
 
     // All player buttons
-    private Button User;
+    //pls add to git
+
+    private ImageButton User;
     private ImageButton btnShare;
     private ImageButton btnPlay;
     private ImageButton btnForward;
@@ -39,11 +45,17 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
     private ImageButton btnPrevious;
     private ImageButton btnPlaylist;
     private ImageButton btnRepeat;
+    private ImageButton btnmyplaylist;
+    private ImageButton btnAddToPlaylist;
+    private ImageButton btnspeedup;
+
+    private  PopupMenu popup;
     //private ImageButton btnShuffle;
     private SeekBar songProgressBar;
     private TextView songTitleLabel;
     private TextView songCurrentDurationLabel;
     private TextView songTotalDurationLabel;
+
     // Media Player
     private  MediaPlayer mp;
     // Handler to update UI timer, progress bar etc,.
@@ -53,10 +65,11 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
     private int seekForwardTime = 5000; // 5000 milliseconds
     private int seekBackwardTime = 5000; // 5000 milliseconds
     private int currentSongIndex = 0;
+    private float speed= 1.0f;
     private boolean isShuffle = false;
     private boolean isRepeat = false;
     private boolean isShare = false;
-    private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
+    //private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 
 
     @Override
@@ -78,11 +91,46 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
         songCurrentDurationLabel = (TextView) findViewById(R.id.songCurrentDurationLabel);
         songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
         btnShare = (ImageButton) findViewById(R.id.btnShare);
-        User  = (Button) findViewById(R.id.btnUser);
+        btnmyplaylist = (ImageButton) findViewById(R.id.btnmyplaylist);
+        //add to playlist
+        btnAddToPlaylist=(ImageButton) findViewById(R.id.addtoplaylist);
+        btnspeedup=(ImageButton) findViewById(R.id.speedup);
+
+        User  = (ImageButton)findViewById(R.id.btnuser);
 
         mp = new MediaPlayer();
+
+
+        popup = new PopupMenu(AndroidBuildingMusicPlayerActivity.this,findViewById(R.id.speedup));
+        popup.setOnMenuItemClickListener(AndroidBuildingMusicPlayerActivity.this);
+        popup.inflate(R.menu.popup_menu);
         songManager = new SongsManager(this);
+
+        // Getting all songs list
+        songManager.getPlayList();
+
+       /* while(!songManager.load_UI)
+        {
+            Log.d("main","loop");
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            }
+            catch(InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+            Log.d("in main activity",songsList.toString());
+        }*/
+        //songsList=songManager.songsList;
+        Log.d("in main activity",songManager.songsList.toString());
+        /*while(songsList.size()==0)
+        {
+            songsList=songManager.songsList;
+            Log.d("main","loop");
+            continue;
+        }*/
         utils = new Utilities();
+
 
 
         // Listeners
@@ -145,14 +193,14 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
                 {
                     // shuffle is on - play a random song
                     Random rand = new Random();
-                    currentSongIndex = rand.nextInt((songsList.size() - 1) - 0 + 1) + 0;
+                    currentSongIndex = rand.nextInt((songManager.songsList.size() - 1) - 0 + 1) + 0;
                     Initialise(currentSongIndex);
                     playSong();
                 }
                 else
                 {
                     // no repeat or shuffle ON - play next song
-                    if (currentSongIndex < (songsList.size() - 1))
+                    if (currentSongIndex < (songManager.songsList.size() - 1))
                     {
 
                         Initialise(currentSongIndex + 1);
@@ -170,14 +218,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
             }
         });
 
-        // Getting all songs list
-        songsList=songManager.getPlayList();
 
-        Log.d("in main activity",songsList.toString());
-        while(songsList.size()==0)
-        {
-            continue;
-        }
         // By default play first song
         Initialise(0);
         btnPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
@@ -281,7 +322,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
             public void onClick(View arg0)
             {
                 // check if next song is there or not
-                if(currentSongIndex < (songsList.size() - 1))
+                if(currentSongIndex < (songManager.songsList.size() - 1))
                 {
                     Initialise(currentSongIndex + 1);
                     playSong();
@@ -317,9 +358,9 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
                 else
                 {
                     // play last song
-                    Initialise(songsList.size() - 1);
+                    Initialise(songManager.songsList.size() - 1);
                     playSong();
-                    currentSongIndex = songsList.size() - 1;
+                    currentSongIndex = songManager.songsList.size() - 1;
                 }
 
             }
@@ -368,11 +409,11 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
                 final String MEDIA_PATH = android.os.Environment.getExternalStorageDirectory().getPath() + "/";
                 Log.d("share",MEDIA_PATH);
                 File f = new File(MEDIA_PATH);
-                Uri uri = Uri.parse(songsList.get(currentSongIndex).get("songPath"));
-                Log.d("share",songsList.get(currentSongIndex).get("songPath"));
+                Uri uri = Uri.parse(songManager.songsList.get(currentSongIndex).get("songPath"));
+                Log.d("share",songManager.songsList.get(currentSongIndex).get("songPath"));
                 Intent share = new Intent();
                 share.setAction(Intent.ACTION_SEND);
-                share.putExtra(Intent.EXTRA_TEXT,songsList.get(currentSongIndex).get("songPath"));
+                share.putExtra(Intent.EXTRA_TEXT,songManager.songsList.get(currentSongIndex).get("songPath"));
                 share.setType("text/*");
                 share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(Intent.createChooser(share, "Share url of audio file"));
@@ -383,6 +424,14 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
          * Button Click event for Play list click event
          * Launches list activity which displays list of songs
          * */
+        btnmyplaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AndroidBuildingMusicPlayerActivity.this, View_Database.class);
+                startActivity(intent);
+            }
+        });
+        new View_Database();
         btnPlaylist.setOnClickListener(new View.OnClickListener()
         {
 
@@ -395,7 +444,69 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
         });
 
 
+        btnspeedup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                popup.show();
+                Toast.makeText(getApplicationContext(), "Playback speed change", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        btnAddToPlaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Add to playlist",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+    }
+
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.one:
+                speed=1.0f;
+                // do your code
+                item.setChecked(true);
+                Toast.makeText(getApplicationContext(), "Playback 1x", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.two:
+                speed=2.0f;
+                item.setChecked(true);
+                Toast.makeText(getApplicationContext(), "Playback 2x", Toast.LENGTH_SHORT).show();
+                // do your code
+                break;
+            case R.id.one_half:
+                speed=1.5f;
+                item.setChecked(true);
+                Toast.makeText(getApplicationContext(), "Playback 1.5x", Toast.LENGTH_SHORT).show();
+                // do your code
+                break;
+            case R.id.one_half_quarter:
+                speed=1.75f;
+                item.setChecked(true);
+                Toast.makeText(getApplicationContext(), "Playback 1.75x", Toast.LENGTH_SHORT).show();
+                // do your code
+                break;
+
+        }
+
+        if (mp.isPlaying()) {
+            mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(speed));
+
+        } else {
+            mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(speed));
+
+            mp.pause();
+        }
+
+        return true;
     }
     /**
      * Receiving song index from playlist view
@@ -422,11 +533,12 @@ public class AndroidBuildingMusicPlayerActivity extends Activity
         try
         {
             mp.reset();
-            mp.setDataSource(songsList.get(songIndex).get("songPath"));
+            mp.setDataSource(songManager.songsList.get(songIndex).get("songPath"));
+            mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(speed));
             mp.prepare();
             //mp.start();
             // Displaying Song title
-            String songTitle = songsList.get(songIndex).get("songTitle");
+            String songTitle = songManager.songsList.get(songIndex).get("songTitle");
             songTitleLabel.setText(songTitle);
 
             // Changing Button Image to pause image

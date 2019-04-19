@@ -3,6 +3,8 @@ package com.androidhive.musicplayer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +27,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 public class PlayListActivity extends ListActivity
 {
 	// Songs list
-	public ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
+	//public ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -36,12 +38,20 @@ public class PlayListActivity extends ListActivity
 		Log.d("call create playlist","Bleu");
 
 		// get all songs from sdcard
-		songsList=plm.getPlayList();
-		Log.d("list",songsList.toString());
+		plm.getPlayList();
+
+		try {
+			TimeUnit.SECONDS.sleep(5);
+		}
+		catch(InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+
 
 
 		// Adding menuItems to ListView
-		ListAdapter adapter = new SimpleAdapter(this, songsList,
+		ListAdapter adapter = new SimpleAdapter(this, plm.songsList,
 				R.layout.playlist_item, new String[] { "songTitle" }, new int[] {
 				R.id.songTitle });
 
@@ -73,7 +83,6 @@ public class PlayListActivity extends ListActivity
 		databaseReference.addValueEventListener(new ValueEventListener() {
 			@Override
 			public void onDataChange(final DataSnapshot dataSnapshot) {
-
 				list.clear();
 				Log.d("firebase","song1");
 				for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
@@ -83,10 +92,8 @@ public class PlayListActivity extends ListActivity
 					Log.d("music",Mod.toString());
 				}
 			}
-
 			@Override
 			public void onCancelled(DatabaseError databaseError) {
-
 			}
 		});*/
 

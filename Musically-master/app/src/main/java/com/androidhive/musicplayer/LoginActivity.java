@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.auth.FirebaseUser;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailTV, passwordTV;
@@ -38,6 +40,16 @@ public class LoginActivity extends AppCompatActivity {
                 loginUserAccount();
             }
         });
+
+
+        //checking if user is logged in or not
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null){
+            Toast.makeText(getApplicationContext(), "Already logged in as '" +user.getEmail()+ "'", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, AndroidBuildingMusicPlayerActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     private void loginUserAccount() {
