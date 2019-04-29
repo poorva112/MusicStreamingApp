@@ -103,11 +103,11 @@ public class UserActivity extends AppCompatActivity {
                 if ( radioButton.getText().equals("Free") ){
                     mDatabase.child("Users").child(username).setValue(null);
 
+
                 }
                 else {
-                    mDatabase.child("Users").child(username).child("Playlist").setValue("empty");
-                    mDatabase.child("Users").child(username).child("Downloads").setValue("empty");
-
+//                    mDatabase.child("Users").child(username).child("Playlist").setValue("empty");
+                    mDatabase.child("Users").child(username).setValue("empty");
                 }
             }
         });

@@ -620,11 +620,11 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                 //fetch album and songname
 
                 //hardcoded have to change this but it is displaying song name
-                String selectedSong = "shallow|a star is born";
+//                String selectedSong = "shallow|a star is born";
                 //add song detail(name + album name) to database in Users.username reference
                 //String selectedSong = songname + '|' + albumname;
-                userNameRef.child("Playlist").child(selectedSong).child("Song").setValue("shallow");
-                userNameRef.child("Playlist").child(selectedSong).child("Album").setValue("a star is born");
+//                userNameRef.child("Playlist").child(selectedSong).child("Song").setValue("shallow");
+//                userNameRef.child("Playlist").child(selectedSong).child("Album").setValue("a star is born");
 
             }
         });
