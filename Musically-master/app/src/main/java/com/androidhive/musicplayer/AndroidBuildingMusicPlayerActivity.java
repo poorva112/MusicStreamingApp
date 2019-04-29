@@ -657,23 +657,30 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
             View view = (LayoutInflater.from(AndroidBuildingMusicPlayerActivity.this)).inflate(R.layout.alertplaylist, null);
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(AndroidBuildingMusicPlayerActivity.this);
-            alertBuilder.setView(view);
 
-            final EditText userInputPlaylist = (EditText) findViewById(R.id.userInputPlaylist);  //from alertPrompt.xml
+            final EditText userInputPlaylist = (EditText) view.findViewById(R.id.userInputPlaylist);  //from alertPrompt.xml
 
-            alertBuilder.setCancelable(true).setPositiveButton("Add to Playlist", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //
-                    //to access this value use userInputPlaylist.getText();
-                    // add this to firebase database
-                    String playlistName = userInputPlaylist.getText().toString();
 
-                    //                userNameRef.child(userInputPlaylist.getText()).setValue("empty");
-                    Toast.makeText(getApplicationContext(), playlistName, Toast.LENGTH_SHORT).show();
+            alertBuilder.setView(view)
+                    .setTitle("Enter Playlist Name")
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                }
-            });
+
+
+                        }
+                    })
+                    .setPositiveButton("Create Playlist", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String playlistName = userInputPlaylist.getText().toString();
+                            userNameRef.child(playlistName).setValue("empty");
+
+                        }
+                    });
+
+
             Dialog dialog = alertBuilder.create();
             dialog.show();
 

@@ -5,24 +5,24 @@
     build-mode="COLD"
     density="420dpi"
     format="10"
-    ir-eligibility="FIELD_ADDED"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.3.2"
-    timestamp="1556535439182"
+    timestamp="1556537575763"
     token="3527422153446874983"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="374" />
+        duration="237" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="21" />
+        duration="25" />
     <task
         name="verifier"
-        duration="3" />
+        duration="11" />
 
     <artifact
         location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
@@ -74,8 +74,7 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1556534674116"
+        timestamp="1556536185604"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/resources/instant-run/debug/resources-debug.apk"
@@ -83,7 +82,8 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1556534965395"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1556537135558"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
@@ -91,8 +91,8 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="FIELD_ADDED"
-        timestamp="1556535439182"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1556537575763"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
