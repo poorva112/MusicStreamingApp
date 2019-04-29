@@ -12,10 +12,11 @@ function getInputVal(id){
 }
 
 function saveMessage(song, album, artist, year, genre, url){
-	var songname = song.split('.')[0];
-	
+	var songname = song.split('.')[0]; 
+	//the song uploaded is stripped from its end extension to add to the database
+	// only selected formats are allowed
 	if(song.split('.')[1]=="wav" || song.split('.')[1]=="mp3" || song.split('.')[1]=="wma" ){
-		var newMessageRef = messagesRef.child(songname+'|'+album);						
+		var newMessageRef = messagesRef.child(songname+'|'+album);	// they are sent to a parent named songname|album 					
 		newMessageRef.set({
 			Song : songname,
 			Album : album,
@@ -63,7 +64,7 @@ function uploadMultipleFiles(File, album, artist, year, genre, i, flength) {
 		    	});
 		        uploader.value = 0;
 
-		        if(i == flength){		//if it's the last file
+		        if(i == flength){		//if it's the last file, give alert and reset form
 		        	alert("Upload is complete");
 					document.getElementById('uploadform').reset();
 		        }
@@ -85,6 +86,7 @@ uploadbtn.addEventListener("click", function(e){
 	var year = getInputVal('year');
 	var genre = getInputVal('genre');
 
+	//Converted to lowercase to avoid redundancies
 	album = album.toLowerCase();
 	artist = artist.toLowerCase();
 	genre = genre.toLowerCase();

@@ -20,8 +20,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    
-
     <style type="text/css">
         #uploader{
             -webkit-appearance: none;
@@ -102,6 +100,7 @@
     <div class="w3-container w3-padding-32 w3-black div100" style="margin: 10%;" id="upload">
         
 
+        <!-- Upload Form -->
         <form id="uploadform">
 
             <p><span class="w3-large">Upload Multiple files </span><br>
@@ -123,6 +122,8 @@
             <i class="fa fa-paper-plane"></i> Click to Upload</button>
 		</form>
 
+        <!-- End of Upload Form -->
+
 	</div>
        
 
@@ -131,6 +132,7 @@
     </div>
   
     <!-- Footer -->
+    <center>
     <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
         <i class="fa fa-facebook-official w3-hover-opacity"></i>
         <i class="fa fa-instagram w3-hover-opacity"></i>
@@ -141,26 +143,31 @@
     
     <!-- End footer -->
     </footer>
+    </center>
 </div>
 
     <script type="text/javascript">  //Logout
+        
         //Get elements
         const btnLogout = document.getElementById('btnLogout');
-        //Add login event
+        
+        //Sign out 
         btnLogout.addEventListener('click', e => {
             firebase.auth().signOut();
+            window.location.href = "index.html";    //redirect to login page
         });
-        //Add a realtime listener
+        
+        //Realtime listener
+        //Not really needed as admin is redirected to login page on signing out
         firebase.auth().onAuthStateChanged(firebaseUser => {
             if(firebaseUser){
-                console.log(firebaseUser);
-                // btnLogout.classList.remove('hide');
+                console.log(firebaseUser);                
             }else{
                 console.log('Not logged in');
-                window.location.href = "index.html";
-                // btnLogout.classList.add('hide');
+                window.location.href = "index.html";            //redirect to login page
             }
         });
+        
     </script>
 
     <script src="upload.js"></script>

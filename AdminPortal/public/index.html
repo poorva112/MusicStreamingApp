@@ -66,6 +66,8 @@
 <body>
     <br><br><br><p> <center><h2>Admin Login</h2></p>
      
+
+    <!-- Login Credentials Input -->
     <div class="container">
     
         <input type="email" id="txtEmail" placeholder="Email" required> <br><br>
@@ -75,7 +77,12 @@
         <button id="btnLogin" value="Login" class="btn btn-action">Login</button>      
  
     </div>
+    <!-- End of Login Credentials Input -->
+
     <br>
+
+
+    <!-- Div for error message, Invalid Credentials -->
     <div id="error"></div>
 
 
@@ -85,22 +92,24 @@
             const txtEmail = document.getElementById('txtEmail');
             const txtPassword = document.getElementById('txtPassword');
             const btnLogin = document.getElementById('btnLogin');
-            //const btnLogout = document.getElementById('btnLogout');
+           
             //Add login event
             btnLogin.addEventListener('click', e=>{
                 //get email and pass
                 const email = txtEmail.value;
                 const pass = txtPassword.value;
                 const auth = firebase.auth();
+                
                 //Sign in
                 const promise = auth.signInWithEmailAndPassword(email, pass);
                 promise.catch(e => console.log(e.message));
             });
+
             //Add a realtime listener
             firebase.auth().onAuthStateChanged(firebaseUser => {
                 if(firebaseUser){
                     console.log(firebaseUser);
-                    window.location.href = "landingpage.html";
+                    window.location.href = "landingpage.html";      //redirect to landing page
                     
                 }else{
                     console.log('Not logged in');
@@ -115,6 +124,11 @@
                         setTimeout(InvalidCred, 2500)
                     });
 
+                    // javascript is asynchronous. I've added delay of 2.5 secs before it displays the error message.
+                    // It was showing error message for a fraction of second before it was redirected to landing page
+                    
+
+                    //Reset input values 
                     txtPassword.value="";
                     txtEmail.value="";
                 }

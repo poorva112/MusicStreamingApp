@@ -1,5 +1,6 @@
+//Initialising Firebase project
+
 (function(){
-    //Initialize Firebase
     var config = {
         apiKey: "AIzaSyAPBcpiimmN0ExBk7FQCp1pQfirme__Th4",
         authDomain: "rhythm1-b1f76.firebaseapp.com",
