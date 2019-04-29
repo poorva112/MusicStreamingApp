@@ -1,6 +1,7 @@
 
 
 var messagesRef = firebase.database().ref('Music');
+var imageRef = firebase.database().ref('Thumbnail');
 var uploadbtn = document.getElementById('uploadbtn');
 var mfiles = document.getElementById('mfiles');
 var uploader = document.getElementById('uploader');
@@ -23,6 +24,14 @@ function saveMessage(song, album, artist, year, genre, url){
 			Artist : artist,
 			Year : year,
 			Genre: genre,
+			Url : url
+		});
+	}
+	else if(song.split('.')[1]=="png" || song.split('.')[1]=="jpg" || song.split('.')[1]=="jpeg"){
+		var newImageRef = imageRef.child(album);
+		alert("yes");
+		newImageRef.set({
+			Album : album, 
 			Url : url
 		});
 	}
