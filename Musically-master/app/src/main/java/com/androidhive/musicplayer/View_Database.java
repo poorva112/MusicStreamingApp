@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//The activity class view database is an extension of the maain class acivity. This class checks the logged in user and displays the respective playlist
 public class View_Database extends Activity {
 
     private FirebaseDatabase mFirebaseDatabase;
@@ -35,7 +36,7 @@ public class View_Database extends Activity {
     private ArrayList<String> list=new ArrayList<String>();
     private ListView mListView;
     //pls add to git
-
+    // onCreate initialises the function if its being executed first time 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class View_Database extends Activity {
         mListView = findViewById(R.id.listview);
         Log.d("lisview",mListView.toString());
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference(); 
         FirebaseUser user = mAuth.getCurrentUser();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -51,17 +52,17 @@ public class View_Database extends Activity {
             Log.d("email",user.getEmail());
         }
         String userEmail = user.getEmail();
-        userEmail = userEmail.split("@")[0];
-        DatabaseReference userNameRef = mDatabase.child("Users").child(userEmail);
+        userEmail = userEmail.split("@")[0]; //the name before the @ consists of userid
+        DatabaseReference userNameRef = mDatabase.child("Users").child(userEmail); // the schema has Users has the parent
 
-        DatabaseReference playlist=userNameRef.child("Playlist");
+        DatabaseReference playlist=userNameRef.child("Playlist"); // Users has Playlist as one of its child
 
         playlist.addValueEventListener(new ValueEventListener() {
             //@Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                showData(dataSnapshot);
+                showData(dataSnapshot); // data snapshot is an inbuilt class which extracts all the data from the database
             }
 
             @Override
@@ -88,7 +89,7 @@ public class View_Database extends Activity {
 
         }
 
-        adapter = new ArrayAdapter<String>(this,R.layout.simple_list_item_1,list);
+        adapter = new ArrayAdapter<String>(this,R.layout.simple_list_item_1,list); //ArrayAdapter acts like an intermediate for arraylist data source and view of a list
         mListView.setAdapter(adapter);
     }
 

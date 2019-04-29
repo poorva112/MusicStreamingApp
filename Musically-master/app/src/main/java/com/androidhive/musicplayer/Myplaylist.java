@@ -1,12 +1,11 @@
 package com.androidhive.musicplayer;
 
-
+// this non activity class gets the name from the name from the datasnapshot
 public class Myplaylist {
 
     private String name;
-    //pls add to git
-    //private String email;
-    //private String phone_num;
+  
+   
 
     public Myplaylist() {
     }

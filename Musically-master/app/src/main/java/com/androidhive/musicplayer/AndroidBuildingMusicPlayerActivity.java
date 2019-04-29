@@ -3,7 +3,6 @@ package com.androidhive.musicplayer;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -36,6 +35,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 
 public class AndroidBuildingMusicPlayerActivity extends Activity implements PopupMenu.OnMenuItemClickListener
@@ -54,7 +54,8 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     private ImageButton btnPlaylist;
     private ImageButton btnRepeat;
     private ImageButton btnmyplaylist;
-    private ImageButton btnAddToPlaylist;
+    public ImageButton btnAddToPlaylist;
+    public ImageButton btnDownload;
     private ImageButton btnspeedup;
 
     private  PopupMenu popup;
@@ -84,6 +85,46 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     private DatabaseReference userNameRef;
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        final String userEmail = user.getEmail();
+        final String username = userEmail.split("@")[0];
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        userNameRef = mDatabase.child("Users").child(username);
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("listener","entered listener");
+                if(!dataSnapshot.exists()) {
+                    Log.d("listener","user deleted");
+                    //user data doesnt exist  -> free user
+                    //hide AddToPlayList button
+                    Toast.makeText(getApplicationContext(), "Free user", Toast.LENGTH_SHORT).show();
+                    btnAddToPlaylist.setVisibility(View.GONE);
+                    btnDownload.setVisibility(View.GONE);
+                }
+                else{
+                    //user data exists -> premium user
+                    //display AddToPlayList button
+
+                    Toast.makeText(getApplicationContext(), "Premium user", Toast.LENGTH_SHORT).show();
+                    btnAddToPlaylist.setVisibility(View.VISIBLE);
+                    btnDownload.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Log.d(TAG, databaseError.getMessage()); //Don't ignore errors!
+            }
+        };
+        userNameRef.addListenerForSingleValueEvent(eventListener);
+
+    }
+    @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -105,17 +146,22 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("listener","entered listener");
                 if(!dataSnapshot.exists()) {
+                    Log.d("listener","user deleted");
                     //user data doesnt exist  -> free user
                     //hide AddToPlayList button
                     Toast.makeText(getApplicationContext(), "Free user", Toast.LENGTH_SHORT).show();
                     btnAddToPlaylist.setVisibility(View.GONE);
+                    btnDownload.setVisibility(View.GONE);
                 }
                 else{
                     //user data exists -> premium user
                     //display AddToPlayList button
+
                     Toast.makeText(getApplicationContext(), "Premium user", Toast.LENGTH_SHORT).show();
                     btnAddToPlaylist.setVisibility(View.VISIBLE);
+                    btnDownload.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -141,7 +187,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
         btnShare = (ImageButton) findViewById(R.id.btnShare);
         btnmyplaylist = (ImageButton) findViewById(R.id.btnmyplaylist);
-
+        btnDownload = (ImageButton) findViewById(R.id.btnDownload);
         btnspeedup=(ImageButton) findViewById(R.id.speedup);
 
         User  = (ImageButton)findViewById(R.id.btnuser);
@@ -455,18 +501,53 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
             @Override
             public void onClick(View arg0)
-            {
+            {   
+                //external storage directory gets the location from its sd card or local storage
                 final String MEDIA_PATH = android.os.Environment.getExternalStorageDirectory().getPath() + "/";
                 Log.d("share",MEDIA_PATH);
                 File f = new File(MEDIA_PATH);
                 Uri uri = Uri.parse(songManager.songsList.get(currentSongIndex).get("songPath"));
                 Log.d("share",songManager.songsList.get(currentSongIndex).get("songPath"));
-                Intent share = new Intent();
-                share.setAction(Intent.ACTION_SEND);
+                Intent share = new Intent(); //Intent carries the message object
+                share.setAction(Intent.ACTION_SEND); //The action is set to send for sharing
                 share.putExtra(Intent.EXTRA_TEXT,songManager.songsList.get(currentSongIndex).get("songPath"));
                 share.setType("text/*");
                 share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                startActivity(Intent.createChooser(share, "Share url of audio file"));
+                startActivity(Intent.createChooser(share, "Share url of audio file")); //the activity is started with the intent as share
+            }
+        });
+        btnDownload.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View arg0)
+            {
+                String path=songManager.songsList.get(currentSongIndex).get("songPath");
+                String title=songManager.songsList.get(currentSongIndex).get("songTitle");
+                String url=path;
+
+                if (url.contains("emulated"))
+                {
+                    return;
+                }
+
+                /*String[] new_title_array =title.split(" ");
+                String res_title="";
+                for(int i=0;i<new_title_array.length;i++)
+                {
+                    res_title=res_title+new_title_array[i]+"%20";
+                }
+                String res_tit=res_title.substring(0,res_title.length()-2);
+                Log.d("res tit",res_tit);
+                int beg=url.indexOf(title);
+                int end=beg+title.length();
+                Log.d("extension",url.substring(end,end+4));
+                */
+
+                //storageReference= FirebaseStorage.getInstance().getReference();
+                //storageRef = storageReference.child("Songs/" +songManager.songsList.get(currentSongIndex).get("songPath"));
+                Uri uri = Uri.parse(url);
+                startActivity(new Intent(Intent.ACTION_VIEW, uri));
+
             }
         });
 
