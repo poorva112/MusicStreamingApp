@@ -615,32 +615,14 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         btnAddToPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //add song detail(name + album name) to database in Users.username reference
-
-//                Toast.makeText(getApplicationContext(),"Adding to playlist",Toast.LENGTH_SHORT).show();
-
                 //Dropdown menu with already existing playlist and an option to create new playlist
                 popupPlaylist.show();
-//
-
-                //create user prompt alert dialogue to type Playlist Name
-                //..... userNameRef.child(playlist)....
-
-                /* Alert Dialogue with user prompt code
-                LayoutInflater.from(AndroidBuildingMusicPlayerActivity.this).inflate(R.layout., null);
-                AlertDialog.Builder  alertBuilder = new AlertDialog.Builder(AndroidBuildingMusicPlayerActivity.this);
-                alertBuilder.setView(layoutResId);
-
-                //use alerplaylist.xml for user prompt
-                //  Youtube link : https://www.youtube.com/watch?v=BXTanDpOTVU
-                */
-
                 //fetch album and songname
-
-                //drop-down menu for playlist???
 
                 //hardcoded have to change this but it is displaying song name
                 String selectedSong = "shallow|a star is born";
+                //add song detail(name + album name) to database in Users.username reference
+                //String selectedSong = songname + '|' + albumname;
                 userNameRef.child("Playlist").child(selectedSong).child("Song").setValue("shallow");
                 userNameRef.child("Playlist").child(selectedSong).child("Album").setValue("a star is born");
 
@@ -666,9 +648,6 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
-
-
                         }
                     })
                     .setPositiveButton("Create Playlist", new DialogInterface.OnClickListener() {
@@ -720,6 +699,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                 Toast.makeText(getApplicationContext(), "Create New Playlist", Toast.LENGTH_SHORT).show();
                 //alert dialogue user prompt
                 playlistPrompt();
+
                 // add new item to existing Playlist list
 
 
@@ -731,7 +711,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                 break;
 
             case R.id.deletePlaylist:
-
+                Toast.makeText(getApplicationContext(), "Delete Playlist", Toast.LENGTH_SHORT).show();
                 break;
 
         }
