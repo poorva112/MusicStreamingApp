@@ -39,7 +39,7 @@ public class PlayListActivity extends ListActivity
 
 		// get all songs from sdcard
 		plm.getPlayList();
-
+		/*
 		try {
 			TimeUnit.SECONDS.sleep(5);
 		}
@@ -48,7 +48,7 @@ public class PlayListActivity extends ListActivity
 			e.printStackTrace();
 		}
 
-
+*/
 
 		// Adding menuItems to ListView
 		ListAdapter adapter = new SimpleAdapter(this, plm.songsList,
@@ -77,25 +77,6 @@ public class PlayListActivity extends ListActivity
 			}
 		});
 
-
-		/*DatabaseReference databaseReference;
-		databaseReference = FirebaseDatabase.getInstance().getReference("Songs");
-		databaseReference.addValueEventListener(new ValueEventListener() {
-			@Override
-			public void onDataChange(final DataSnapshot dataSnapshot) {
-				list.clear();
-				Log.d("firebase","song1");
-				for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren())
-				{
-					ModelData Mod = dataSnapshot1.getValue(ModelData.class);
-					list.add(Mod);
-					Log.d("music",Mod.toString());
-				}
-			}
-			@Override
-			public void onCancelled(DatabaseError databaseError) {
-			}
-		});*/
 
 	}
 

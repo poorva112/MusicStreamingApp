@@ -4,9 +4,6 @@
     <item android:id="@+id/createNewPlaylist"
         android:title="Create new playlist"/>
 
-    <item android:id="@+id/deletePlaylist"
-        android:title="Delete playlist"/>
-
     <item android:id="@+id/existingPlaylist"
         android:title="Select existing playlist"/>
 

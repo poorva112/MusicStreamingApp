@@ -643,6 +643,7 @@ drawable seekbar_progress
 drawable seekbar_progress_bg
 drawable share
 drawable track_info_bg
+id Thumbnail_image
 id accType
 id action0
 id action_bar
@@ -698,12 +699,12 @@ id chronometer
 id collapseActionView
 id contentPanel
 id createNewPlaylist
+id createPlaylist
 id custom
 id customPanel
 id dark
 id decor_content_parent
 id default_activity_button
-id deletePlaylist
 id dimensions
 id direct
 id disableHome
@@ -764,6 +765,7 @@ id radioFree
 id radioPremium
 id radioType
 id register
+id repeat_etc
 id right
 id right_icon
 id right_side
@@ -886,14 +888,12 @@ layout notification_template_part_time
 layout player
 layout playlist
 layout playlist_item
-layout playlist_item_array
 layout rounded_corner
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout simple_list_item_1
 layout support_simple_spinner_dropdown_item
-layout view_database_layout
 menu popup_menu
 menu popup_playlist
 string Email

@@ -24,10 +24,6 @@
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xxhdpi-v4/abc_ic_menu_moreoverflow_mtrl_alpha.png"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/layout_view_database_layout.xml.flat",
-        "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/layout/view_database_layout.xml"
-    },
-    {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_abc_tab_indicator_material.xml.flat",
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable/abc_tab_indicator_material.xml"
     },
@@ -84,16 +80,16 @@
         "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/drawable-hdpi/img_btn_play.png"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_abc_list_selector_background_transition_holo_dark.xml.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xxxhdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_disabled.xml.flat",
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/509fb713e6e7120f439240e4670c6863/res/drawable/common_google_signin_btn_text_disabled.xml"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xxxhdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png"
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_abc_list_selector_background_transition_holo_dark.xml.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-ldrtl-xxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -112,12 +108,12 @@
         "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/layout/activity_log_sign.xml"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
-    },
-    {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_ab_back_mtrl_am_alpha.png.flat",
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xxhdpi-v4/abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xhdpi-v4/abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -152,16 +148,16 @@
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xxhdpi-v4/abc_ic_star_black_16dp.png"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_launcher.png.flat",
-        "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/drawable-mdpi/ic_launcher.png"
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_abc_btn_radio_material.xml.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable/abc_btn_radio_material.xml"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xxhdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_abc_btn_radio_material.xml.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable/abc_btn_radio_material.xml"
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_launcher.png.flat",
+        "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/drawable-mdpi/ic_launcher.png"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_googleg_standard_color_18.png.flat",
@@ -172,20 +168,20 @@
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/layout/abc_list_menu_item_icon.xml"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_abc_ratingbar_small_material.xml.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable/abc_ratingbar_small_material.xml"
-    },
-    {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-hdpi-v4/abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_btn_share.xml.flat",
-        "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/drawable/btn_share.xml"
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_abc_ratingbar_small_material.xml.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable/abc_ratingbar_small_material.xml"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/layout_notification_template_big_media_narrow_custom.xml.flat",
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/56ed29a2ef0995bac97cf4b068635c12/res/layout/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_btn_share.xml.flat",
+        "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/drawable/btn_share.xml"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -220,16 +216,16 @@
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/509fb713e6e7120f439240e4670c6863/res/drawable-xhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/anim/abc_slide_out_bottom.xml"
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/layout_abc_action_mode_bar.xml.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/layout/abc_action_mode_bar.xml"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-mdpi-v4/abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/layout_abc_action_mode_bar.xml.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/layout/abc_action_mode_bar.xml"
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/anim_abc_slide_out_bottom.xml.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/anim/abc_slide_out_bottom.xml"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_ic_fast_forward_black_24dp.xml.flat",
@@ -278,10 +274,6 @@
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-mdpi-v4/abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/layout_playlist_item_array.xml.flat",
-        "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/layout/playlist_item_array.xml"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/layout_abc_action_bar_view_list_nav_layout.xml.flat",
@@ -364,12 +356,12 @@
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/layout/notification_template_media.xml"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_light_focused.xml.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/509fb713e6e7120f439240e4670c6863/res/drawable/common_google_signin_btn_text_light_focused.xml"
-    },
-    {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_pressed_holo_light.9.png.flat",
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_text_light_focused.xml.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/509fb713e6e7120f439240e4670c6863/res/drawable/common_google_signin_btn_text_light_focused.xml"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
@@ -452,12 +444,12 @@
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/509fb713e6e7120f439240e4670c6863/res/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
-    },
-    {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/layout_bg_player_footer.xml.flat",
         "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/layout/bg_player_footer.xml"
+    },
+    {
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/509fb713e6e7120f439240e4670c6863/res/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/color_abc_primary_text_material_light.xml.flat",
@@ -508,16 +500,16 @@
         "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/509fb713e6e7120f439240e4670c6863/res/drawable/common_google_signin_btn_text_dark_focused.xml"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_go_search_api_mtrl_alpha.png.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xxhdpi-v4/abc_ic_go_search_api_mtrl_alpha.png"
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_radio.xml.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/layout/abc_list_menu_item_radio.xml"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-hdpi_list_selector.xml.flat",
         "source": "/Users/college/Documents/Git/Musically-master/app/src/main/res/drawable-hdpi/list_selector.xml"
     },
     {
-        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_radio.xml.flat",
-        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/layout/abc_list_menu_item_radio.xml"
+        "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_ic_go_search_api_mtrl_alpha.png.flat",
+        "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/drawable-xxhdpi-v4/abc_ic_go_search_api_mtrl_alpha.png"
     },
     {
         "merged": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/res/merged/debug/drawable-hdpi_seekbar_progress.xml.flat",

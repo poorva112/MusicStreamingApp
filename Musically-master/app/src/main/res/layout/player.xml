@@ -31,7 +31,8 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:background="@null"
-            android:src="@drawable/ic_queue_music_black_24dp" />
+            android:src="@drawable/ic_queue_music_black_24dp"
+            android:visibility="gone"/>
 
         <ImageButton
             android:id="@+id/btnuser"
@@ -51,22 +52,24 @@
     </LinearLayout>
 
     <!-- Song Thumbnail Image -->
+    <!-- Song Thumbnail Image -->
     <LinearLayout
         android:id="@+id/songThumbnail"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/player_header_bg"
-        android:layout_marginTop="93dp"
-        android:gravity="center"
+        android:layout_above="@id/repeat_etc"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
 
         <ImageView
-            android:layout_width="283dp"
-            android:layout_height="263dp"
+            android:id="@+id/Thumbnail_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding"
             android:src="@drawable/adele" />
-
-
 
     </LinearLayout>
     
@@ -175,6 +178,7 @@
     <!-- Repeat / Shuffle buttons -->
     <LinearLayout
         android:layout_width="fill_parent"
+        android:id="@+id/repeat_etc"
         android:layout_height="60dp"
         android:layout_above="@id/timerDisplay"
         android:layout_marginBottom="-15dp"

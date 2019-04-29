@@ -79,13 +79,8 @@ public class View_Database extends Activity {
     private void showData(DataSnapshot dataSnapshot) {
         //HashMap<String,String> s;
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
-            //s=new HashMap<String,String>();
 
-            Log.d("play", ds.getValue().toString());
-           // s.put("songTitle",ds.getValue().toString());
-            //s.put("songPath","meh");
-            //list.add(s);
-            list.add(ds.getValue().toString());
+            list.add(ds.child("Song").getValue().toString()+"|"+ds.child("Album").getValue().toString());
 
         }
 

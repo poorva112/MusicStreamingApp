@@ -1,4 +1,3 @@
-
 package com.androidhive.musicplayer;
 
 import android.app.Activity;
@@ -45,16 +44,13 @@ public class SongsManager
 	private FirebaseAuth mAuth;
 	public boolean load_UI=false;
 	private DatabaseReference mDatabase;
-	boolean local_loaded=false;
+	private String ImageUrl;
 
 	private String nam;
 	// Constructor
 	public SongsManager(Context context)
 	{
 		this.context=context;
-		if(local_loaded==false) {
-			local_loaded = false;
-		}
 		FirebaseApp.initializeApp(this.context);
 
 		mAuth = FirebaseAuth.getInstance();
@@ -67,16 +63,6 @@ public class SongsManager
 	 * */
 	public void getPlayList()
 	{
-		/* tmp = new MyClass();
-		Thread thread = new Thread(tmp);
-		thread.start();
-		try {
-			thread.join();
-		}
-		catch(InterruptedException e)
-		{
-			e.printStackTrace();
-		}*/
 
 		get_cloud_music();
 
@@ -139,184 +125,72 @@ public class SongsManager
 			HashMap<String, String> songMap = new HashMap<String, String>();
 			songMap.put("songTitle", song.getName().substring(0, (song.getName().length() - 4)));
 			songMap.put("songPath", song.getPath());
+			songMap.put("imagePath","");
+			songMap.put("songAlbum","");
 			// Adding each song to SongList
 			Log.d("name",song.getName());
 			songsList.add(songMap);
 		}
 	}
 
-	public void add_cloud_music(String name, String path)
+	public void add_cloud_music(String name, String path, String Imagepath, String Album)
 	{
 		HashMap<String, String> songMap = new HashMap<String, String>();
 
-		songMap.put("songTitle", name.substring(0, (name.length() - 4)));
+		songMap.put("songTitle", name);
 		songMap.put("songPath", path);
+		songMap.put("imagePath", Imagepath);
+		songMap.put("songAlbum", Album);
 		Log.d("path",path);
 		songsList.add(songMap);
 		Log.d("add",name);
 
 	}
 
+
+	private void showData(DataSnapshot dataSnapshot) {
+		DatabaseReference thumbnailRef = mDatabase.child("Thumbnail");
+		for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+			String name=ds.child("Song").getValue().toString();
+			String Album=ds.child("Album").getValue().toString();
+			String url=ds.child("Url").getValue().toString();
+			ImageUrl="https://firebasestorage.googleapis.com/v0/b/rhythm1-b1f76.appspot.com/o/Thumbnail%2Fa%20star%20is%20born.png?alt=media&token=024e41e2-03d3-4397-a93a-bf7ad6517c22";
+
+			add_cloud_music(name,url,ImageUrl,Album);
+
+			//Log.d("fetching music: url", url);
+			//Log.d("fetching music: name", name);
+
+
+		}
+	}
 	public void get_cloud_music(){
 		mDatabase = FirebaseDatabase.getInstance().getReference();
+		DatabaseReference musicRef = mDatabase.child("Music");
+		DatabaseReference thumbnailRef = mDatabase.child("Thumbnail");
+
+
 		FirebaseUser user = mAuth.getCurrentUser();
 		if(user != null){
 			Log.d("email",user.getEmail());
 		}
 
 		Log.d("login", "sign:success");
-		StorageReference storageReference;
-		StorageReference storageRef;
-		//list= new ArrayList<>();
-		Log.d("firebase","loading data from firebase");
-		storageReference=FirebaseStorage.getInstance().getReference();
-		songs.add("shallow.wav");
-		songs.add("million reasons.wma");
-		songs.add("always remember us this way.mp3");
-		Thread t1;
-		fetchURL hehe;
-		for(int i=0;i<3;i++) {
-			//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
 
-			storageRef = storageReference.child("Songs/" + songs.get(i));
-			hehe = new fetchURL(storageRef, i);
-			t1 = new Thread(hehe);
-			t1.start();
-
-			try {
-				t1.join();
-				Log.d("completed url fetch",i+"");
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		musicRef.addValueEventListener(new ValueEventListener() {
+			//@Override
+			public void onDataChange(DataSnapshot dataSnapshot) {
+				showData(dataSnapshot);
 			}
 
-			/*
-			storageRef = storageReference.child("Songs/" + songs.get(1));//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
-			storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-				@Override
-				public void onSuccess(Uri uri) {
-					// Download url of file
-					try {
-						final String url = uri.toString();
-						Log.d("music from firebase", url);
-						add_cloud_music(songs.get(1), url);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			})
-					.addOnFailureListener(new OnFailureListener() {
-						@Override
-						public void onFailure(@NonNull Exception e) {
-							Log.i("TAG", e.getMessage());
-						}
-					});
-			storageRef = storageReference.child("Songs/" + songs.get(2));//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
-			storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-				@Override
-				public void onSuccess(Uri uri) {
-					// Download url of file
-					try {
-						final String url = uri.toString();
-						Log.d("music from firebase", url);
-						add_cloud_music(songs.get(2), url);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			})
-					.addOnFailureListener(new OnFailureListener() {
-						@Override
-						public void onFailure(@NonNull Exception e) {
-							Log.i("TAG", e.getMessage());
-						}
-					});
-			*/
-		}
-	}
+			@Override
+			public void onCancelled(DatabaseError databaseError) {
 
-	private class MyClass implements Runnable
-	{
-
-		@Override
-		public void run()
-		{
-			mDatabase = FirebaseDatabase.getInstance().getReference();
-			FirebaseUser user = mAuth.getCurrentUser();
-			if(user != null){
-				Log.d("email",user.getEmail());
 			}
-
-			Log.d("login", "sign:success");
-			StorageReference storageReference;
-			StorageReference storageRef;
-			Log.d("firebase","loading data from firebase");
-			storageReference=FirebaseStorage.getInstance().getReference();
-			songs.add("shallow.wav");
-			songs.add("million reasons.wma");
-			songs.add("always remember us this way.mp3");
-			Thread t1;
-			fetchURL hehe;
-			for(int i=0;i<3;i++) {
-				//("gs://rhythm1-b1f76.appspot.com/Songs/shallow.wav");
-				storageRef = storageReference.child("Songs/" + songs.get(i));
-				hehe = new fetchURL(storageRef, i);
-				t1 = new Thread(hehe);
-				t1.start();
-				try {
-					t1.join();
-					Log.d("completed url fetch",i+"");
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			Log.d("thread","done");
-		}
+		});
 
 	}
 
-	private class fetchURL implements Runnable{
-
-
-		private Integer i;
-		private StorageReference storageRef;
-		public fetchURL(StorageReference a,Integer i)
-		{
-			// store parameter for later user
-			this.storageRef=a;
-			this.i=i;
-
-		}
-		@Override
-		public void run()
-		{
-
-			storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-				@Override
-				public void onSuccess(Uri uri) {
-					// Download url of file
-					try {
-						final String url = uri.toString();
-						Log.d("music from firebase", url);
-						add_cloud_music(songs.get(i), url);
-
-						if(i==3)
-						{
-							load_UI=true;
-						}
-
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			})
-					.addOnFailureListener(new OnFailureListener() {
-						@Override
-						public void onFailure(@NonNull Exception e) {
-							Log.i("TAG", e.getMessage());
-						}
-					});
-		}
-	}
 
 }

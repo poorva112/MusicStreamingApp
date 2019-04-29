@@ -2,6 +2,7 @@ package com.androidhive.musicplayer;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -11,6 +12,9 @@ import java.util.concurrent.TimeUnit;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
@@ -26,6 +30,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Menu;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -63,6 +68,8 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     public ImageButton btnAddToPlaylist;
     public ImageButton btnDownload;
     private ImageButton btnspeedup;
+
+    private ImageView thumbnail;
 
     private  PopupMenu popup;
     private  PopupMenu popupPlaylist;       //Pop up for playlist
@@ -114,17 +121,19 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                     Log.d("listener","user deleted");
                     //user data doesnt exist  -> free user
                     //hide AddToPlayList button
-                    Toast.makeText(getApplicationContext(), "Free user", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Free user", Toast.LENGTH_SHORT).show();
                     btnAddToPlaylist.setVisibility(View.GONE);
                     btnDownload.setVisibility(View.GONE);
+                    btnmyplaylist.setVisibility(View.GONE);
                 }
                 else{
                     //user data exists -> premium user
                     //display AddToPlayList button
 
-                    Toast.makeText(getApplicationContext(), "Premium user", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Premium user", Toast.LENGTH_SHORT).show();
                     btnAddToPlaylist.setVisibility(View.VISIBLE);
                     btnDownload.setVisibility(View.VISIBLE);
+                    btnmyplaylist.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -201,7 +210,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         btnmyplaylist = (ImageButton) findViewById(R.id.btnmyplaylist);
         btnDownload = (ImageButton) findViewById(R.id.btnDownload);
         btnspeedup=(ImageButton) findViewById(R.id.speedup);
-
+        thumbnail = (ImageView) findViewById(R.id.Thumbnail_image);
         User  = (ImageButton)findViewById(R.id.btnuser);
 
 
@@ -215,7 +224,6 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         popup.inflate(R.menu.popup_menu);
 
         /*
-
         needs to be checked
          */
         popupPlaylist = new PopupMenu(AndroidBuildingMusicPlayerActivity.this,findViewById(R.id.addtoplaylist));
@@ -528,7 +536,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
             @Override
             public void onClick(View arg0)
-            {   
+            {
                 //external storage directory gets the location from its sd card or local storage
                 final String MEDIA_PATH = android.os.Environment.getExternalStorageDirectory().getPath() + "/";
                 Log.d("share",MEDIA_PATH);
@@ -615,8 +623,11 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         btnAddToPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                playlistPrompt();
+
                 //Dropdown menu with already existing playlist and an option to create new playlist
-                popupPlaylist.show();
+//                popupPlaylist.show();
                 //fetch album and songname
 
                 //hardcoded have to change this but it is displaying song name
@@ -637,31 +648,44 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     private void playlistPrompt() {
 
 
-            View view = (LayoutInflater.from(AndroidBuildingMusicPlayerActivity.this)).inflate(R.layout.alertplaylist, null);
-            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(AndroidBuildingMusicPlayerActivity.this);
+        View view = (LayoutInflater.from(AndroidBuildingMusicPlayerActivity.this)).inflate(R.layout.alertplaylist, null);
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(AndroidBuildingMusicPlayerActivity.this);
 
-            final EditText userInputPlaylist = (EditText) view.findViewById(R.id.userInputPlaylist);  //from alertPrompt.xml
+        final EditText userInputPlaylist = (EditText) view.findViewById(R.id.userInputPlaylist);  //from alertPrompt.xml
 
 
-            alertBuilder.setView(view)
-                    .setTitle("Enter Playlist Name")
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+        alertBuilder.setView(view)
+                .setTitle("Enter Playlist Name")
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setPositiveButton("Add to Playlist", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String playlistName = userInputPlaylist.getText().toString();
+
+                        //userNameRef.child(playlistName).setValue("empty");
+                        String url=songManager.songsList.get(currentSongIndex).get("songPath");
+                        String songname=songManager.songsList.get(currentSongIndex).get("songTitle");
+                        String albumname=songManager.songsList.get(currentSongIndex).get("songAlbum");
+                        String thumbnail= songManager.songsList.get(currentSongIndex).get("imagePath");
+                        if(url.contains("emulated")) {
+                            url="";
                         }
-                    })
-                    .setPositiveButton("Create Playlist", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String playlistName = userInputPlaylist.getText().toString();
-                            userNameRef.child(playlistName).setValue("empty");
+                        String selectedSong = songname + '|' + albumname;
+                        userNameRef.child(playlistName).child(selectedSong).child("Song").setValue(songname);
+                        userNameRef.child(playlistName).child(selectedSong).child("Album").setValue(albumname);
+                        userNameRef.child(playlistName).child(selectedSong).child("Url").setValue(url);
+                        userNameRef.child(playlistName).child(selectedSong).child("thumbnail").setValue(thumbnail);
 
-                        }
-                    });
+                    }
+                });
 
 
-            Dialog dialog = alertBuilder.create();
-            dialog.show();
+        Dialog dialog = alertBuilder.create();
+        dialog.show();
 
     }
 
@@ -695,24 +719,21 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                 // do your code
                 break;
 
-            case R.id.createNewPlaylist:
-                Toast.makeText(getApplicationContext(), "Create New Playlist", Toast.LENGTH_SHORT).show();
-                //alert dialogue user prompt
-                playlistPrompt();
+//            case R.id.createNewPlaylist:
+//                Toast.makeText(getApplicationContext(), "Create New Playlist", Toast.LENGTH_SHORT).show();
+//                //alert dialogue user prompt
+//                playlistPrompt();
+//
+//                // add new item to existing Playlist list
+//
+//
+//                break;
+//
+//            case R.id.existingPlaylist:
+//                Toast.makeText(getApplicationContext(), "Existing Playlist", Toast.LENGTH_SHORT).show();
+//
+//                break;
 
-                // add new item to existing Playlist list
-
-
-                break;
-
-            case R.id.existingPlaylist:
-                Toast.makeText(getApplicationContext(), "Existing Playlist", Toast.LENGTH_SHORT).show();
-
-                break;
-
-            case R.id.deletePlaylist:
-                Toast.makeText(getApplicationContext(), "Delete Playlist", Toast.LENGTH_SHORT).show();
-                break;
 
         }
 
@@ -754,12 +775,17 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         try
         {
             mp.reset();
+            Log.d("thumbnail","blah");
             mp.setDataSource(songManager.songsList.get(songIndex).get("songPath"));
             mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(speed));
             mp.prepare();
             //mp.start();
             // Displaying Song title
             String songTitle = songManager.songsList.get(songIndex).get("songTitle");
+            Log.d("thumbnail","blah1");
+            String thumb= songManager.songsList.get(songIndex).get("imagePath");
+            Log.d("thumbnail","bl"+thumb);
+            new DownloadImageTask(thumbnail).execute(thumb);
             songTitleLabel.setText(songTitle);
 
             // Changing Button Image to pause image
@@ -852,6 +878,36 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     {
         super.onDestroy();
         mp.release();
+    }
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView Thumbnail;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.Thumbnail = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+
+            if (urldisplay=="")
+            {
+                Log.d("local image","def");
+                return BitmapFactory.decodeResource(getResources(), R.drawable.adele);
+            }
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            Thumbnail.setImageBitmap(result);
+        }
     }
 
 }
