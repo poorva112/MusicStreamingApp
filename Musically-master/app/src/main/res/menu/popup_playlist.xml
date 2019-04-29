@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/createNewPlaylist"
+        android:title="Create new playlist"/>
+
+    <item android:id="@+id/deletePlaylist"
+        android:title="Delete playlist"/>
+
+    <item android:id="@+id/existingPlaylist"
+        android:title="Select existing playlist"/>
+
 </menu>

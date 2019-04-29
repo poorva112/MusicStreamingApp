@@ -5,32 +5,31 @@
     build-mode="COLD"
     density="420dpi"
     format="10"
-    ir-eligibility="COMPATIBLE"
     plugin-version="3.3.2"
-    timestamp="1555680908999"
+    timestamp="1556534965395"
     token="3527422153446874983"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="216" />
+        duration="13" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="19" />
+        duration="0" />
     <task
         name="verifier"
-        duration="10" />
+        duration="0" />
 
     <artifact
-        location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
-        type="SPLIT" />
+        location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1555680763929"
+        timestamp="1556534496894"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
@@ -75,11 +74,28 @@
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1555680908999"
+        timestamp="1556534674116"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/resources/instant-run/debug/resources-debug.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="METHOD_DELETED"
+        timestamp="1556534898100"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1556534965395"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

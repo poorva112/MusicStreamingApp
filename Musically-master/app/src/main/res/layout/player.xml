@@ -66,6 +66,8 @@
             android:layout_height="263dp"
             android:src="@drawable/adele" />
 
+
+
     </LinearLayout>
     
     <!-- Player Footer -->

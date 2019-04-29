@@ -5,9 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,13 +23,17 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Menu;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.EditText;
 import android.widget.Button;
 import android.widget.PopupMenu;
+import android.content.SharedPreferences;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,7 +50,6 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
     // All player buttons
 
-
     private ImageButton User;
     private ImageButton btnShare;
     private ImageButton btnPlay;
@@ -59,11 +65,15 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     private ImageButton btnspeedup;
 
     private  PopupMenu popup;
+    private  PopupMenu popupPlaylist;       //Pop up for playlist
+    private  PopupMenu popupExistingPlaylist;
+
     //private ImageButton btnShuffle;
     private SeekBar songProgressBar;
     private TextView songTitleLabel;
     private TextView songCurrentDurationLabel;
     private TextView songTotalDurationLabel;
+    private EditText userInputPlaylist;
 
     // Media Player
     private  MediaPlayer mp;
@@ -79,6 +89,8 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     private boolean isRepeat = false;
     private boolean isShare = false;
     //private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
+
+    private List<String> existingPlaylist;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -192,13 +204,28 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
         User  = (ImageButton)findViewById(R.id.btnuser);
 
+        userInputPlaylist = (EditText) findViewById(R.id.userInputPlaylist);  //from alertPrompt.xml
 
         mp = new MediaPlayer();
+
 
 
         popup = new PopupMenu(AndroidBuildingMusicPlayerActivity.this,findViewById(R.id.speedup));
         popup.setOnMenuItemClickListener(AndroidBuildingMusicPlayerActivity.this);
         popup.inflate(R.menu.popup_menu);
+
+        /*
+
+        needs to be checked
+         */
+        popupPlaylist = new PopupMenu(AndroidBuildingMusicPlayerActivity.this,findViewById(R.id.addtoplaylist));
+        popupPlaylist.setOnMenuItemClickListener(AndroidBuildingMusicPlayerActivity.this);
+        popupPlaylist.inflate(R.menu.popup_playlist);
+
+
+
+
+
         songManager = new SongsManager(this);
 
         // Getting all songs list
@@ -590,7 +617,11 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             public void onClick(View v) {
                 //add song detail(name + album name) to database in Users.username reference
 
-                Toast.makeText(getApplicationContext(),"Adding to playlist",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"Adding to playlist",Toast.LENGTH_SHORT).show();
+
+                //Dropdown menu with already existing playlist and an option to create new playlist
+                popupPlaylist.show();
+//
 
                 //create user prompt alert dialogue to type Playlist Name
                 //..... userNameRef.child(playlist)....
@@ -608,6 +639,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
                 //drop-down menu for playlist???
 
+                //hardcoded have to change this but it is displaying song name
                 String selectedSong = "shallow|a star is born";
                 userNameRef.child("Playlist").child(selectedSong).child("Song").setValue("shallow");
                 userNameRef.child("Playlist").child(selectedSong).child("Album").setValue("a star is born");
@@ -618,6 +650,28 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
 
     }
+
+
+    private void playlistPrompt(){
+        View view = (LayoutInflater.from(AndroidBuildingMusicPlayerActivity.this)).inflate(R.layout.alertplaylist, null);
+        AlertDialog.Builder  alertBuilder = new AlertDialog.Builder(AndroidBuildingMusicPlayerActivity.this);
+        alertBuilder.setView(view);
+
+        alertBuilder.setCancelable(true).setPositiveButton("Add to Playlist", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which){
+                //
+                //to access this value use userInputPlaylist.getText();
+                // add this to firebase database
+                userNameRef.child(userInputPlaylist.getText().toString().trim()).setValue("empty");
+                //Toast.makeText(getApplicationContext(), userInputPlaylist.getText(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        Dialog dialog = alertBuilder.create();
+        dialog.show();
+    }
+
 
 
     @Override
@@ -649,7 +703,26 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                 // do your code
                 break;
 
+            case R.id.createNewPlaylist:
+                Toast.makeText(getApplicationContext(), "Create New Playlist", Toast.LENGTH_SHORT).show();
+                //alert dialogue user prompt
+                playlistPrompt();
+                // add new item to existing Playlist list
+
+
+                break;
+
+            case R.id.existingPlaylist:
+                Toast.makeText(getApplicationContext(), "Existing Playlist", Toast.LENGTH_SHORT).show();
+
+                break;
+
+            case R.id.deletePlaylist:
+
+                break;
+
         }
+
 
         if (mp.isPlaying()) {
             mp.setPlaybackParams(mp.getPlaybackParams().setSpeed(speed));
@@ -659,6 +732,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
             mp.pause();
         }
+
 
         return true;
     }

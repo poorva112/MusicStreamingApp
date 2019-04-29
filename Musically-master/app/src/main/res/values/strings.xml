@@ -2,7 +2,8 @@
 <resources>
 
     <string name="hello">Hello World, AndroidBuildingMusicPlayerActivity!</string>
-    <string name="app_name">AndroidBuildingMusicPlayer</string>
+    <string name="app_name">Rhythm</string>
+
     <string name="Email">Email</string>
     <string name="PasswordLog">Password</string>
 

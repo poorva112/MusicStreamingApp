@@ -590,6 +590,7 @@ drawable gradient_bg_hover
 drawable ic_account_circle_black_24dp
 drawable ic_fast_forward_black_24dp
 drawable ic_fast_rewind_black_24dp
+drawable ic_file_download_black_24dp
 drawable ic_launcher
 drawable ic_library_music_black_24dp
 drawable ic_loop_black_24dp
@@ -675,6 +676,7 @@ id beginning
 id blocking
 id bottom
 id btnBackward
+id btnDownload
 id btnForward
 id btnLogin
 id btnLogout
@@ -695,11 +697,13 @@ id checkbox
 id chronometer
 id collapseActionView
 id contentPanel
+id createNewPlaylist
 id custom
 id customPanel
 id dark
 id decor_content_parent
 id default_activity_button
+id deletePlaylist
 id dimensions
 id direct
 id disableHome
@@ -707,6 +711,7 @@ id edit_query
 id email
 id end
 id end_padder
+id existingPlaylist
 id expand_activities_button
 id expanded_menu
 id forever
@@ -816,6 +821,7 @@ id topPanel
 id two
 id up
 id useLogo
+id userInputPlaylist
 id welUsr
 id wide
 id withText
@@ -889,6 +895,7 @@ layout simple_list_item_1
 layout support_simple_spinner_dropdown_item
 layout view_database_layout
 menu popup_menu
+menu popup_playlist
 string Email
 string PasswordLog
 string abc_action_bar_home_description
