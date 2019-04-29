@@ -73,7 +73,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     private TextView songTitleLabel;
     private TextView songCurrentDurationLabel;
     private TextView songTotalDurationLabel;
-    private EditText userInputPlaylist;
+
 
     // Media Player
     private  MediaPlayer mp;
@@ -204,7 +204,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
         User  = (ImageButton)findViewById(R.id.btnuser);
 
-        userInputPlaylist = (EditText) findViewById(R.id.userInputPlaylist);  //from alertPrompt.xml
+
 
         mp = new MediaPlayer();
 
@@ -652,26 +652,32 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     }
 
 
-    private void playlistPrompt(){
-        View view = (LayoutInflater.from(AndroidBuildingMusicPlayerActivity.this)).inflate(R.layout.alertplaylist, null);
-        AlertDialog.Builder  alertBuilder = new AlertDialog.Builder(AndroidBuildingMusicPlayerActivity.this);
-        alertBuilder.setView(view);
+    private void playlistPrompt() {
 
-        alertBuilder.setCancelable(true).setPositiveButton("Add to Playlist", new DialogInterface.OnClickListener(){
-            @Override
-            public void onClick(DialogInterface dialog, int which){
-                //
-                //to access this value use userInputPlaylist.getText();
-                // add this to firebase database
-                userNameRef.child(userInputPlaylist.getText().toString().trim()).setValue("empty");
-                //Toast.makeText(getApplicationContext(), userInputPlaylist.getText(), Toast.LENGTH_SHORT).show();
 
-            }
-        });
-        Dialog dialog = alertBuilder.create();
-        dialog.show();
+            View view = (LayoutInflater.from(AndroidBuildingMusicPlayerActivity.this)).inflate(R.layout.alertplaylist, null);
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(AndroidBuildingMusicPlayerActivity.this);
+            alertBuilder.setView(view);
+
+            final EditText userInputPlaylist = (EditText) findViewById(R.id.userInputPlaylist);  //from alertPrompt.xml
+
+            alertBuilder.setCancelable(true).setPositiveButton("Add to Playlist", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //
+                    //to access this value use userInputPlaylist.getText();
+                    // add this to firebase database
+                    String playlistName = userInputPlaylist.getText().toString();
+
+                    //                userNameRef.child(userInputPlaylist.getText()).setValue("empty");
+                    Toast.makeText(getApplicationContext(), playlistName, Toast.LENGTH_SHORT).show();
+
+                }
+            });
+            Dialog dialog = alertBuilder.create();
+            dialog.show();
+
     }
-
 
 
     @Override
