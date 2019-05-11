@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style type="text/css">
-        #uploader{
+        #uploader, #thumb_uploader{
             -webkit-appearance: none;
             appearance: none;
         }
@@ -103,10 +103,10 @@
         <!-- Upload Form -->
         <form id="uploadform">
 
-            <p><span class="w3-large">Upload Multiple files </span><br>
+            <p><span class="w3-large">Select Multiple files</span><br>
                 <progress value ="0" max="100" id="uploader" >0% </progress>
                     &nbsp;&nbsp;&nbsp;&nbsp; 
-                <input type="file" id="mfiles" multiple /> 
+                <input type="file" accept="audio/*" id="mfiles" multiple /> 
             </p>
 
             <p><input class="w3-input w3-padding-19" type="text" id="album" placeholder="Album Name" required name="album"></p>
@@ -117,7 +117,15 @@
 
             <p><input class="w3-input w3-padding-19" type="text" id="genre" placeholder="Genre" required name="genre"></p>
 
+            <p><span class="w3-large">Select Thumbnail</span><br>
+                <progress value ="0" max="100" id="thumb_uploader" >0% </progress>
+                    &nbsp;&nbsp;&nbsp;&nbsp; 
+                <input type="file" accept="image/*" id="thumb_file" /> 
+            </p>
+
             <br><br>
+
+
             <button class="w3-button w3-light-grey w3-padding-large" type="submit" name = "submit"  id="uploadbtn" >
             <i class="fa fa-paper-plane"></i> Click to Upload</button>
 		</form>

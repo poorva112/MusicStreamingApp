@@ -1,11 +1,10 @@
-
-
 var messagesRef = firebase.database().ref('Music');
 var imageRef = firebase.database().ref('Thumbnail');
 var uploadbtn = document.getElementById('uploadbtn');
 var mfiles = document.getElementById('mfiles');
 var uploader = document.getElementById('uploader');
-var thumbnail = document.getElementById('tn');
+var thumb_file = document.getElementById('thumb_file');
+var thumb_uploader = document.getElementById('thumb_uploader');
 
 
 function getInputVal(id){
@@ -29,7 +28,7 @@ function saveMessage(song, album, artist, year, genre, url){
 	}
 	else if(song.split('.')[1]=="png" || song.split('.')[1]=="jpg" || song.split('.')[1]=="jpeg"){
 		var newImageRef = imageRef.child(album);
-		alert("yes");
+
 		newImageRef.set({
 			Album : album, 
 			Url : url
@@ -66,7 +65,7 @@ function uploadMultipleFiles(File, album, artist, year, genre, i, flength) {
 		    	
 		    	// get the uploaded url when upload is complete
 		    	task.snapshot.ref.getDownloadURL().then(function(downloadURL){
-		    		console.log('File available at', downloadURL);
+		    		// console.log('File available at', downloadURL);
 		    				    		
                		var curUrl = downloadURL; 		//and then update database with metadata + download url               		
                		saveMessage(File.name.toLowerCase(), album, artist, year, genre, curUrl);
@@ -74,13 +73,13 @@ function uploadMultipleFiles(File, album, artist, year, genre, i, flength) {
 		        uploader.value = 0;
 
 		        if(i == flength){		//if it's the last file, give alert and reset form
+		        	// + 1 for thumbnail
 		        	alert("Upload is complete");
 					document.getElementById('uploadform').reset();
-		        }
-
-		   		// alert(File.name);
+		        }		   		
 		        
-	    	}
+	    	}	   
+
 	    );
 	});
 }
@@ -95,13 +94,15 @@ uploadbtn.addEventListener("click", function(e){
 	var year = getInputVal('year');
 	var genre = getInputVal('genre');
 
+
 	//Converted to lowercase to avoid redundancies
 	album = album.toLowerCase();
 	artist = artist.toLowerCase();
 	genre = genre.toLowerCase();
 
+	var flength = mfiles.files.length;  
 	function uploadfiles(mfiles){
-		var flength = mfiles.files.length;  
+		// var flength = mfiles.files.length;  
 		for (var i = 0; i < flength; i++) {
     		var File = mfiles.files[i];
 			
@@ -112,6 +113,10 @@ uploadbtn.addEventListener("click", function(e){
 
 	uploadfiles(mfiles); 	//mfiles  = all the files taken together in a list
 	
+	//check if thumbnail file exists
+	if(thumb_file.files[0] != null){
+		uploadMultipleFiles(thumb_file.files[0], album, artist, year, genre, 0, flength);
+	}
 });
 
 
