@@ -16,6 +16,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
+
+import com.google.firebase.database.FirebaseDatabase;
+
+
 
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -24,6 +30,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button regBtn;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +38,8 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         initializeUI();
 
@@ -52,7 +61,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private void registerNewUser() {
         progressBar.setVisibility(View.VISIBLE);
 
-        String email, password;
+        final String email, password;
         email = emailTV.getText().toString();
         password = passwordTV.getText().toString();
 
@@ -72,6 +81,13 @@ public class RegistrationActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
+
+
+
+                            final String username = email.split("@")[0];
+                            mDatabase.child("Users").child(username).child("Role").setValue("free");
+
+
 
                             Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                             emailTV.getText().clear();

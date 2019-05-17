@@ -54,6 +54,7 @@ public class UserActivity extends AppCompatActivity {
 
         String userEmail = user.getEmail();
         final String username = userEmail.split("@")[0];
+
         //Username is assumed to be part of email ID
         //final keyword makes it accessible to to other functions within this scope. For ex: changeType.setOnClickListener
 
@@ -66,22 +67,21 @@ public class UserActivity extends AppCompatActivity {
         /*Checking if User Data exists in Users Reference in Firebase Storage or not
             and accordingly decide if a current user is a premium or free user.
         */
-        DatabaseReference userNameRef = mDatabase.child("Users").child(username);
+        DatabaseReference userNameRef = mDatabase.child("Users").child(username).child("Role");
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(!dataSnapshot.exists()) {
+                if(dataSnapshot.exists() && dataSnapshot.getValue().equals("free")) {
                     //user data doesnt exist  -> free user
                     //Display the same on Users page
                     free.setChecked(true);
                     accType.setText("-> FREE");
 
                 }
-                else{
+                else if(dataSnapshot.exists() && dataSnapshot.getValue().equals("premium")){
                     //user data exists -> premium user
                     premium.setChecked(true);
                     accType.setText("-> PREMIUM");
-
                 }
             }
 
@@ -101,13 +101,12 @@ public class UserActivity extends AppCompatActivity {
                 accType.setText("-> " + radioButton.getText());
 
                 if ( radioButton.getText().equals("Free") ){
-                    mDatabase.child("Users").child(username).setValue(null);
+                    mDatabase.child("Users").child(username).child("Role").setValue("free");
 
 
                 }
                 else {
-//                    mDatabase.child("Users").child(username).child("Playlist").setValue("empty");
-                    mDatabase.child("Users").child(username).setValue("empty");
+                    mDatabase.child("Users").child(username).child("Role").setValue("premium");
                 }
             }
         });

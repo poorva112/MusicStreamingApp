@@ -42,7 +42,7 @@ public class LogSign extends AppCompatActivity {
         //Avoids unnecessarily logging in again and again
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
-            Toast.makeText(getApplicationContext(), "Already logged in as '" +user.getEmail()+ "'", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Logged in as '" +user.getEmail()+ "'", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LogSign.this, AndroidBuildingMusicPlayerActivity.class);
             startActivity(intent);
         }
