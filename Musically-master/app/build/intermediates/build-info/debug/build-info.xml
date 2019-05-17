@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="arm64-v8a,armeabi-v7a,armeabi"
-    api-level="27"
+    api-level="28"
     build-mode="FULL"
     density="420dpi"
     format="10"
     plugin-version="3.3.2"
-    timestamp="1556566920339"
+    timestamp="1558106209416"
     token="3527422153446874983"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="46" />
+        duration="524" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="118" />
+        duration="16" />
     <task
         name="verifier"
-        duration="0" />
+        duration="29" />
 
-    <artifact
-        location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
-        type="SPLIT_MAIN" />
     <artifact
         location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
         type="SPLIT" />
@@ -62,14 +59,14 @@
     <artifact
         location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
         type="SPLIT" />
+    <artifact
+        location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1556566920339"
+        timestamp="1558106209416"
         verifier="FULL_BUILD_REQUESTED" >
-        <artifact
-            location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
-            type="SPLIT_MAIN" />
         <artifact
             location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
@@ -106,6 +103,9 @@
         <artifact
             location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
+        <artifact
+            location="/Users/college/Documents/Git/Musically-master/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

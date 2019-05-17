@@ -675,10 +675,10 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                             url="";
                         }
                         String selectedSong = songname + '|' + albumname;
-                        userNameRef.child(playlistName).child(selectedSong).child("Song").setValue(songname);
-                        userNameRef.child(playlistName).child(selectedSong).child("Album").setValue(albumname);
-                        userNameRef.child(playlistName).child(selectedSong).child("Url").setValue(url);
-                        userNameRef.child(playlistName).child(selectedSong).child("thumbnail").setValue(thumbnail);
+                        userNameRef.child("Playlist").child(playlistName).child(selectedSong).child("Song").setValue(songname);
+                        userNameRef.child("Playlist").child(playlistName).child(selectedSong).child("Album").setValue(albumname);
+                        userNameRef.child("Playlist").child(playlistName).child(selectedSong).child("Url").setValue(url);
+                        userNameRef.child("Playlist").child(playlistName).child(selectedSong).child("thumbnail").setValue(thumbnail);
 
                     }
                 });
