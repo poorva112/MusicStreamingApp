@@ -117,16 +117,18 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("listener","entered listener");
-                if(!dataSnapshot.exists()) {
-                    Log.d("listener","user deleted");
-                    //user data doesnt exist  -> free user
+                if(dataSnapshot.exists() && dataSnapshot.child("Role").getValue().equals("free") ) {
+
+//                    Log.d("listener","user deleted");
+
+                    //  -> free user
                     //hide AddToPlayList button
                     //Toast.makeText(getApplicationContext(), "Free user", Toast.LENGTH_SHORT).show();
                     btnAddToPlaylist.setVisibility(View.GONE);
                     btnDownload.setVisibility(View.GONE);
                     btnmyplaylist.setVisibility(View.GONE);
                 }
-                else{
+                else if(dataSnapshot.exists() && dataSnapshot.child("Role").getValue().equals("premium")){
                     //user data exists -> premium user
                     //display AddToPlayList button
 
@@ -168,15 +170,15 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("listener","entered listener");
-                if(!dataSnapshot.exists()) {
-                    Log.d("listener","user deleted");
-                    //user data doesnt exist  -> free user
+                if(!dataSnapshot.exists() && dataSnapshot.child("Role").getValue().equals("free")) {
+//                    Log.d("listener","user deleted");
+                    //-> free user
                     //hide AddToPlayList button
                     Toast.makeText(getApplicationContext(), "Free user", Toast.LENGTH_SHORT).show();
                     btnAddToPlaylist.setVisibility(View.GONE);
                     btnDownload.setVisibility(View.GONE);
                 }
-                else{
+                else if(dataSnapshot.exists() && dataSnapshot.child("Role").getValue().equals("premium")){
                     //user data exists -> premium user
                     //display AddToPlayList button
 
