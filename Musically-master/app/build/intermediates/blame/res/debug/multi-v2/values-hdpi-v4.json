@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/college/Documents/Git/Musically-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
+            "outputFile": "/Users/apple/Downloads/ACMS project/final/MusicStreamingApp/Musically-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "/Users/college/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.4.0.aar/d7cde71e25279f22434b04d65287b592/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "source": "/Users/apple/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/9a3ea499a7e12c4ced202a4706fbaae5/res/values-hdpi-v4/values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

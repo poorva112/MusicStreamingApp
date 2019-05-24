@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Sat May 18 22:03:17 IST 2019
+0.baseType=DIRECTORY
+0.base=/Users/apple/Downloads/ACMS project/final/MusicStreamingApp/Musically-master/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out
+0.path=songs/sample.mp3
+0.set=ASSET
+count=1

@@ -34,7 +34,7 @@ public class UserActivity extends AppCompatActivity {
 
     private RadioButton free;
     private RadioButton premium;
-
+//
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private ImageButton addtoPlaylist;

@@ -3,18 +3,15 @@ package com.androidhive.musicplayer;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.text.InputType;
 import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
@@ -96,7 +93,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
     private boolean isRepeat = false;
     private boolean isShare = false;
     //private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
-
+//
     private List<String> existingPlaylist;
 
     private FirebaseAuth mAuth;
@@ -117,22 +114,14 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("listener","entered listener");
-                if(dataSnapshot.exists() && dataSnapshot.child("Role").getValue().equals("free") ) {
-
-//                    Log.d("listener","user deleted");
-
-                    //  -> free user
-                    //hide AddToPlayList button
-                    //Toast.makeText(getApplicationContext(), "Free user", Toast.LENGTH_SHORT).show();
+                if(dataSnapshot.exists() && dataSnapshot.child("Role").getValue().equals("free") ) { ;
                     btnAddToPlaylist.setVisibility(View.GONE);
                     btnDownload.setVisibility(View.GONE);
                     btnmyplaylist.setVisibility(View.GONE);
                 }
-                else if(dataSnapshot.exists() && dataSnapshot.child("Role").getValue().equals("premium")){
+                else  if(dataSnapshot.exists() && dataSnapshot.child("Role").getValue().equals("premium")){
                     //user data exists -> premium user
                     //display AddToPlayList button
-
-                    //Toast.makeText(getApplicationContext(), "Premium user", Toast.LENGTH_SHORT).show();
                     btnAddToPlaylist.setVisibility(View.VISIBLE);
                     btnDownload.setVisibility(View.VISIBLE);
                     btnmyplaylist.setVisibility(View.VISIBLE);
@@ -145,6 +134,8 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             }
         };
         userNameRef.addListenerForSingleValueEvent(eventListener);
+        Intent  in=new Intent(AndroidBuildingMusicPlayerActivity.this,bottom_nav.class);
+        startActivity(in);
 
     }
     @Override
@@ -171,8 +162,8 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("listener","entered listener");
                 if(!dataSnapshot.exists() && dataSnapshot.child("Role").getValue().equals("free")) {
-//                    Log.d("listener","user deleted");
-                    //-> free user
+                    Log.d("listener","user deleted");
+                    //user data doesnt exist  -> free user
                     //hide AddToPlayList button
                     Toast.makeText(getApplicationContext(), "Free user", Toast.LENGTH_SHORT).show();
                     btnAddToPlaylist.setVisibility(View.GONE);
@@ -241,31 +232,9 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         // Getting all songs list
         songManager.getPlayList();
 
-       /* while(!songManager.load_UI)
-        {
-            Log.d("main","loop");
-            try {
-                TimeUnit.SECONDS.sleep(5);
-            }
-            catch(InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-            Log.d("in main activity",songsList.toString());
-        }*/
-        //songsList=songManager.songsList;
         Log.d("in main activity",songManager.songsList.toString());
-        /*while(songsList.size()==0)
-        {
-            songsList=songManager.songsList;
-            Log.d("main","loop");
-            continue;
-        }*/
         utils = new Utilities();
 
-
-
-        // Listeners
         songProgressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
         {
             @Override
@@ -539,15 +508,15 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             @Override
             public void onClick(View arg0)
             {
-                //external storage directory gets the location from its sd card or local storage
-                final String MEDIA_PATH = android.os.Environment.getExternalStorageDirectory().getPath() + "/";
-                Log.d("share",MEDIA_PATH);
-                File f = new File(MEDIA_PATH);
-                Uri uri = Uri.parse(songManager.songsList.get(currentSongIndex).get("songPath"));
-                Log.d("share",songManager.songsList.get(currentSongIndex).get("songPath"));
+                String url=songManager.songsList.get(currentSongIndex).get("songPath");
+                if (url.contains("emulated"))
+                {
+                    Toast.makeText(getApplicationContext(),"Cannot share local storage music", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent share = new Intent(); //Intent carries the message object
                 share.setAction(Intent.ACTION_SEND); //The action is set to send for sharing
-                share.putExtra(Intent.EXTRA_TEXT,songManager.songsList.get(currentSongIndex).get("songPath"));
+                share.putExtra(Intent.EXTRA_TEXT,url);
                 share.setType("text/*");
                 share.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(Intent.createChooser(share, "Share url of audio file")); //the activity is started with the intent as share
@@ -564,24 +533,9 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
 
                 if (url.contains("emulated"))
                 {
+                    Toast.makeText(getApplicationContext(),"Cannot download local storage music", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-                /*String[] new_title_array =title.split(" ");
-                String res_title="";
-                for(int i=0;i<new_title_array.length;i++)
-                {
-                    res_title=res_title+new_title_array[i]+"%20";
-                }
-                String res_tit=res_title.substring(0,res_title.length()-2);
-                Log.d("res tit",res_tit);
-                int beg=url.indexOf(title);
-                int end=beg+title.length();
-                Log.d("extension",url.substring(end,end+4));
-                */
-
-                //storageReference= FirebaseStorage.getInstance().getReference();
-                //storageRef = storageReference.child("Songs/" +songManager.songsList.get(currentSongIndex).get("songPath"));
                 Uri uri = Uri.parse(url);
                 startActivity(new Intent(Intent.ACTION_VIEW, uri));
 
@@ -627,18 +581,6 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             public void onClick(View v) {
 
                 playlistPrompt();
-
-                //Dropdown menu with already existing playlist and an option to create new playlist
-//                popupPlaylist.show();
-                //fetch album and songname
-
-                //hardcoded have to change this but it is displaying song name
-//                String selectedSong = "shallow|a star is born";
-                //add song detail(name + album name) to database in Users.username reference
-                //String selectedSong = songname + '|' + albumname;
-//                userNameRef.child("Playlist").child(selectedSong).child("Song").setValue("shallow");
-//                userNameRef.child("Playlist").child(selectedSong).child("Album").setValue("a star is born");
-
             }
         });
 
@@ -682,6 +624,8 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                         userNameRef.child("Playlist").child(playlistName).child(selectedSong).child("Url").setValue(url);
                         userNameRef.child("Playlist").child(playlistName).child(selectedSong).child("thumbnail").setValue(thumbnail);
 
+                        Toast.makeText(getApplicationContext(), songname+ " added to "+playlistName , Toast.LENGTH_SHORT).show();
+
                     }
                 });
 
@@ -720,23 +664,6 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
                 Toast.makeText(getApplicationContext(), "Playback 1.75x", Toast.LENGTH_SHORT).show();
                 // do your code
                 break;
-
-//            case R.id.createNewPlaylist:
-//                Toast.makeText(getApplicationContext(), "Create New Playlist", Toast.LENGTH_SHORT).show();
-//                //alert dialogue user prompt
-//                playlistPrompt();
-//
-//                // add new item to existing Playlist list
-//
-//
-//                break;
-//
-//            case R.id.existingPlaylist:
-//                Toast.makeText(getApplicationContext(), "Existing Playlist", Toast.LENGTH_SHORT).show();
-//
-//                break;
-
-
         }
 
 
@@ -770,6 +697,19 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
         }
 
     }
+    public String titlecase(String inp)
+    {
+        String[] words = inp.split(" ");
+        StringBuilder sb = new StringBuilder();
+        if (words[0].length() > 0) {
+            sb.append(Character.toUpperCase(words[0].charAt(0)) + words[0].subSequence(1, words[0].length()).toString().toLowerCase());
+            for (int i = 1; i < words.length; i++) {
+                sb.append(" ");
+                sb.append(Character.toUpperCase(words[i].charAt(0)) + words[i].subSequence(1, words[i].length()).toString().toLowerCase());
+            }
+        }
+        return sb.toString();
+    }
 
     public void  Initialise(int songIndex)
     {
@@ -788,7 +728,7 @@ public class AndroidBuildingMusicPlayerActivity extends Activity implements Popu
             String thumb= songManager.songsList.get(songIndex).get("imagePath");
             Log.d("thumbnail","bl"+thumb);
             new DownloadImageTask(thumbnail).execute(thumb);
-            songTitleLabel.setText(songTitle);
+            songTitleLabel.setText(titlecase(songTitle));
 
             // Changing Button Image to pause image
 

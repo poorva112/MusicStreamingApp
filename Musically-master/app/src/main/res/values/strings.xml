@@ -6,6 +6,11 @@
 
     <string name="Email">Email</string>
     <string name="PasswordLog">Password</string>
+    <string name="title_activity_bottom_nav_test">bottom_nav_test</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_bottom_nav">bottom_nav</string>
 
 
 </resources>

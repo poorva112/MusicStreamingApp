@@ -1,0 +1,4 @@
+#Sat May 18 20:34:59 IST 2019
+base.0=/Users/apple/Downloads/ACMS project/final/MusicStreamingApp/Musically-master/app/build/intermediates/dex/release/mergeDexRelease/out
+path.0=classes.dex
+renamed.0=classes.dex

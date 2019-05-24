@@ -45,7 +45,7 @@ public class SongsManager
 	public boolean load_UI=false;
 	private DatabaseReference mDatabase;
 	private String ImageUrl;
-
+//
 	private String nam;
 	// Constructor
 	public SongsManager(Context context)
@@ -54,7 +54,7 @@ public class SongsManager
 		FirebaseApp.initializeApp(this.context);
 
 		mAuth = FirebaseAuth.getInstance();
-
+//
 	}
 
 	/**

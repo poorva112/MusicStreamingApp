@@ -36,7 +36,7 @@ public class PlayListActivity extends ListActivity
 		setContentView(R.layout.playlist);
 		SongsManager plm = new SongsManager(this);
 		Log.d("call create playlist","Bleu");
-
+//
 		// get all songs from sdcard
 		plm.getPlayList();
 		/*
